@@ -10,7 +10,7 @@ cursor:pointer;
 `
 const Image = styled('img')({
     height:'50px',
-    width:'50px',
+    width:'65px',
     borderRadius:'50%',
     padding:'0 14px',
     objectFit:'cover'
