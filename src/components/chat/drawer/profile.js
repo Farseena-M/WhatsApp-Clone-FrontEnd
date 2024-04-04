@@ -46,7 +46,7 @@ const ProfileEdit = ({handleImageClick}) => {
     </ImageContainer>
     <BoxWrapper>
         <Typography>Your name</Typography>
-        <Typography>Farseena</Typography>
+        <Typography>{account.name}</Typography>
     </BoxWrapper>
     <DescriptionContainer>
         <Typography>This is not your username or pin. This name will be visible to your WhatsApp contacts.</Typography>

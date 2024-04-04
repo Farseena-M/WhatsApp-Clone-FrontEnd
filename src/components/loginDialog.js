@@ -5,6 +5,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode'; 
 import { AccoundContext } from '../context/accoundProvider';
 import ChatDialog from './chatDialog';
+import { addUser } from '../service/api';
 
 const Component = styled(Box)`
 height:100vh;
@@ -56,11 +57,12 @@ const LoginDialog = () => {
 
   const {account,setAccount} = useContext(AccoundContext)
 
-  const onLoginSuccess = (res) => {
+  const onLoginSuccess = async (res) => {
     // Assuming res.credential contains the JWT token
     const decoded = jwtDecode(res.credential);
     // console.log(decoded);
     setAccount(decoded)
+   await addUser(decoded)
   };
   
   const onLoginError = (res) => {
