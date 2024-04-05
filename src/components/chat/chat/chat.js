@@ -33,7 +33,7 @@ margin:40px 0;
 opacity:0.4;
 `
 
-const Chat = () => {
+const BlankChat = () => {
   return (
     <Component>
       <Container>
@@ -47,4 +47,4 @@ const Chat = () => {
   )
 }
 
-export default Chat
+export default BlankChat

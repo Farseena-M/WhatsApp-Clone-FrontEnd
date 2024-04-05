@@ -1,7 +1,8 @@
 import { Box, styled , AppBar,Toolbar, Dialog} from '@mui/material'
 import Menu from './chat/menu/menu'
-import Chat from './chat/chat/chat'
+import BlankChat from './chat/chat/chat'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import ChatBox from './chat/chat/chatBox'
 
 const Components = styled(Box)`
 display:flex;
@@ -57,7 +58,8 @@ const ChatDialog = () => {
            <Menu />
           </LeftComponent>
           <RightComponent>
-           <Chat />
+           {/* <BlankChat /> */}
+           <ChatBox />
           </RightComponent>
         </Components>
         </Dialog>
