@@ -7,7 +7,7 @@ import Messages from './messages'
 
 const ChatBox = () => {
   return (
-    <Box>
+    <Box style={{height:'75%'}}>
       <ChatHeader />
       <Messages />
     </Box>

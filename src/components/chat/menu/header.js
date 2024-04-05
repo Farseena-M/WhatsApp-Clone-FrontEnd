@@ -6,7 +6,7 @@ import InfoDrawer from '../drawer/drawer';
 import { AccoundContext } from '../../../context/accoundProvider';
 
 const Component = styled(Box)`
-height:44px;
+height:55px;
 background:#ededed;
 padding:8px 16px;
 display:flex;
@@ -20,8 +20,8 @@ margin-left:auto;
 }
 `
 const Image = styled('img')({
-  height:30,
-  width:30,
+  height:40,
+  width:40,
   borderRadius:'50%'
 })
 
