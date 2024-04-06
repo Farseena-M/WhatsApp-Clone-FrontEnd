@@ -1,4 +1,4 @@
- import React, { createContext } from 'react'
+ import React, { createContext, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LoginDialog from './components/loginDialog'
 import ChatDialog from './components/chatDialog'
@@ -7,8 +7,10 @@ import SignIn from './components/signIn'
 
 export const userContext = createContext()
 const App = () => {
+  const [user,setUser]=useState([])
+  const [login,setLogin]=useState(false)
   return (
-    <userContext.Provider>
+    <userContext.Provider value={{user,setUser,login,setLogin}}>
       <Routes>
         <Route path='/' element={<LoginDialog />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
