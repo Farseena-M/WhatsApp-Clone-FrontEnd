@@ -1,11 +1,12 @@
 import { Dialog, Box, Typography, List, ListItem , styled , AppBar,Toolbar} from '@mui/material'
 import React, { useContext } from 'react'
-// import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode'; 
 import { AccoundContext } from '../context/accoundProvider';
 import ChatDialog from './chatDialog';
 import { addUser } from '../service/api';
+
 
 const Component = styled(Box)`
 height:100vh;
@@ -57,17 +58,14 @@ const LoginDialog = () => {
 
   const {account,setAccount} = useContext(AccoundContext)
 
-  const onLoginSuccess = async (res) => {
-    // Assuming res.credential contains the JWT token
-    const decoded = jwtDecode(res.credential);
-    // console.log(decoded);
-    setAccount(decoded)
-   await addUser(decoded)
+  const onLoginSuccess = async ({onGoogleLogin}) => {
+    
+    onGoogleLogin()
   };
   
   const onLoginError = (res) => {
     console.log('Login failed', res);
-  };
+  }; 
   
 
   return (
@@ -96,15 +94,15 @@ const LoginDialog = () => {
         </Container>
         <Box style={{position:'relative'}}>
          <QrCode src='https://www.ginifab.com/feeds/qr_code/img/qrcode.jpg' alt='qr code' />
-         <Box style={{position:'absolute',top:'50%',right:'80px',transform:'translateX(25%)'}}>
+        <Box style={{position:'absolute',top:'50%',right:'80px',transform:'translateX(25%)'}}>
         <GoogleLogin 
         onSuccess={onLoginSuccess}
         onError={onLoginError}
         />
-       </Box>
+       </Box> 
         </Box>
        </Compnent>
-       {/* <Button style={{height:'30px',width:'300px',position:'relative',left:'635px',bottom:'160px',border:'none',cursor:'pointer',color:'darkgreen',backgroundColor:'white',padding:'5px'}} onClick={()=>Nvgt('/loginphone')}>Otp Login</Button> */}
+        {/* <Button style={{height:'30px',width:'300px',position:'relative',left:'635px',bottom:'160px',border:'none',cursor:'pointer',color:'darkgreen',backgroundColor:'white',padding:'5px'}} onClick={()=>Nvgt('/loginphone')}>Otp Login</Button>  */}
         </Dialog>
         </>
 }

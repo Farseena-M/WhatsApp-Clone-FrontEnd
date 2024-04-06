@@ -31,7 +31,7 @@ const Conversations = () => {
         users.map(user=>(
             // user.sub !== account.sub &&
             <>
-            <Conversation user={user}/>
+            <Conversation user={user} />
             <StyledDivider />
             </>
         ))
