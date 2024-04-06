@@ -1,4 +1,4 @@
-import axios from 'axios'
+/* import axios from 'axios'
 
 const url ='http://localhost:4000'
 
@@ -18,4 +18,4 @@ export const getUsers = async() =>{
     }catch(error){
    console.log('Error while calling getusers API',error.message);
     }
-}
+} */

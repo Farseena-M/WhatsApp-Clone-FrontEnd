@@ -1,11 +1,9 @@
-/* import React, { createContext } from 'react'
+ import React, { createContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import LoginPhone from './components/loginPhone'
 import LoginDialog from './components/loginDialog'
-import LoginOtp from './components/loginOtp'
 import ChatDialog from './components/chatDialog'
-import ProfileEdit from './components/profileEdit'
 import SignUp from './components/signUp'
+import SignIn from './components/signIn'
 
 export const userContext = createContext()
 const App = () => {
@@ -13,23 +11,22 @@ const App = () => {
     <userContext.Provider>
       <Routes>
         <Route path='/' element={<LoginDialog />}></Route>
-        <Route path='/loginphone' element={<LoginPhone />}></Route>
-        <Route path='/loginOtp' element={<LoginOtp />}></Route>
-        <Route path='/profile' element={<ProfileEdit />}></Route>
-        <Route path='/chat' element={<ChatDialog />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/signin' element={<SignIn />}></Route>
+        {/* <Route path='/profile' element={<ProfileEdit />}></Route> */}
+        <Route path='/chat' element={<ChatDialog />}></Route>
       </Routes>
     </userContext.Provider>
   )
 }
 
-export default App */
+export default App 
 
 
 
 
 
- import React, { useState } from 'react'
+/*  import React, { useState } from 'react'
  import axios from 'axios'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import LoginDialog from './components/loginDialog'
@@ -57,4 +54,4 @@ const App = () => {
   )
 }
 
-export default App 
+export default App  */

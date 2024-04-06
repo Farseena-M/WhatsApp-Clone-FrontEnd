@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Box ,styled} from '@mui/material'
 import ChatIcon from '@mui/icons-material/Chat';
 import HeaderMenu from './headerMenu';
 import InfoDrawer from '../drawer/drawer';
-import { AccoundContext } from '../../../context/accoundProvider';
+import dp from '../../assets/Butterfly.png'
 
 const Component = styled(Box)`
 height:55px;
@@ -26,7 +26,6 @@ const Image = styled('img')({
 })
 
 const Header = () => {
-  const {account} = useContext(AccoundContext)
   const [openDrawer,setOpenDrawer] = useState(false)
 const toggleDrawer = () =>{
   setOpenDrawer(true)
@@ -35,7 +34,7 @@ const toggleDrawer = () =>{
   return (
     <>
     <Component>
-    <Image src={account.picture} alt='dp' onClick={()=>toggleDrawer()} style={{cursor:'pointer'}}/>
+    <Image src={dp} alt='dp' onClick={()=>toggleDrawer()} style={{cursor:'pointer'}}/>
     <Wrapper>
      <ChatIcon />
      <HeaderMenu  setOpenDrawer={setOpenDrawer}/>

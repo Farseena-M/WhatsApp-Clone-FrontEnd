@@ -1,7 +1,6 @@
 import { Box ,Typography,styled} from '@mui/material'
-import React, { useContext } from 'react'
-import { AccoundContext } from '../../../context/accoundProvider'
-
+import React from 'react'
+import dp from '../../assets/Butterfly.png'
 
 const ImageContainer = styled(Box)`
     display:flex;
@@ -38,15 +37,14 @@ padding:15px 20px 28px 30px;
 
 
 const ProfileEdit = ({handleImageClick}) => {
-    const {account} = useContext(AccoundContext)
   return (
     <>
     <ImageContainer>
-    <Image src={account.picture} alt='dp' style={{cursor:'pointer'}} onClick={handleImageClick}/>
+    <Image src={dp} alt='dp' style={{cursor:'pointer'}} onClick={handleImageClick}/>
     </ImageContainer>
     <BoxWrapper>
         <Typography>Your name</Typography>
-        <Typography>{account.name}</Typography>
+        <Typography>Farseena</Typography>
     </BoxWrapper>
     <DescriptionContainer>
         <Typography>This is not your username or pin. This name will be visible to your WhatsApp contacts.</Typography>

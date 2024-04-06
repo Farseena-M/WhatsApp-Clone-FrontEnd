@@ -1,12 +1,7 @@
-import { Dialog, Box, Typography, List, ListItem , styled , AppBar,Toolbar} from '@mui/material'
-import React, { useContext } from 'react'
+ import { Dialog, Box, Typography, List, ListItem , styled , AppBar,Toolbar} from '@mui/material'
+import React from 'react'
 import { Button } from 'react-bootstrap'
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode'; 
-import { AccoundContext } from '../context/accoundProvider';
-import ChatDialog from './chatDialog';
-import { addUser } from '../service/api';
-
+import { useNavigate } from 'react-router-dom'
 
 const Component = styled(Box)`
 height:100vh;
@@ -55,24 +50,10 @@ const StyledList = styled(List)`
 }
 `
 const LoginDialog = () => {
-
-  const {account,setAccount} = useContext(AccoundContext)
-
-  const onLoginSuccess = async ({onGoogleLogin}) => {
-    
-    onGoogleLogin()
-  };
-  
-  const onLoginError = (res) => {
-    console.log('Login failed', res);
-  }; 
-  
-
+  const Nvgt = useNavigate()
   return (
     <div>
       <Component>
-        {account ? <ChatDialog />:
-        <>
         <Header>
             <Toolbar>
 
@@ -87,28 +68,20 @@ const LoginDialog = () => {
         <Container>
          <Title>To use WhatsApp on your computer:</Title>
          <StyledList>
-            <ListItem>1. open WhatsApp on your Phone</ListItem>
+            <ListItem>1. Open WhatsApp on your Phone</ListItem>
             <ListItem>2. Tap Menu Settings and select whatsApp Web</ListItem>
             <ListItem>3. Point your phone to this screen to capture the code</ListItem>
          </StyledList>
         </Container>
-        <Box style={{position:'relative'}}>
+        <Box>
          <QrCode src='https://www.ginifab.com/feeds/qr_code/img/qrcode.jpg' alt='qr code' />
-        <Box style={{position:'absolute',top:'50%',right:'80px',transform:'translateX(25%)'}}>
-        <GoogleLogin 
-        onSuccess={onLoginSuccess}
-        onError={onLoginError}
-        />
-       </Box> 
         </Box>
        </Compnent>
-        {/* <Button style={{height:'30px',width:'300px',position:'relative',left:'635px',bottom:'160px',border:'none',cursor:'pointer',color:'darkgreen',backgroundColor:'white',padding:'5px'}} onClick={()=>Nvgt('/loginphone')}>Otp Login</Button>  */}
+       <Button style={{height:'30px',width:'250px',position:'relative',left:'660px',bottom:'160px',border:'none',cursor:'pointer',color:'white',backgroundColor:'white',padding:'3px'}} onClick={()=>Nvgt('/signin')}>Login</Button>
         </Dialog>
-        </>
-}
         </Component>
     </div>
   )
 }
 
-export default LoginDialog
+export default LoginDialog 
