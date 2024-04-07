@@ -25,7 +25,7 @@ const SignIn = () => {
         e.preventDefault()
         const newreffName = reffName.current.value
         const newreffPassword = reffPassword.current.value
-        const findName = user.find((usr) => usr.name === newreffName)
+        const findName = user.find((usr) => usr.username === newreffName)
         const findPass = user.find((usr) => usr.password === newreffPassword)
         if (findName && findPass) {
             setLogin(true)
