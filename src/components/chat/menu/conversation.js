@@ -18,19 +18,21 @@ const Image = styled('img')({
 })
 
 
-const Conversation = () => {
+const Conversation = ({usr}) => {
+    
     return (
-        <Component>
+        
+            <Component>
             <Box>
                 <Image src={dp} alt='dp' />
             </Box>
             <Box>
                 <Box>
-                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>Name</Typography>
+                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>{usr.username}</Typography>
                 </Box>
             </Box>
         </Component>
-    )
+        )
 }
 
 export default Conversation

@@ -44,6 +44,8 @@ const SignIn = () => {
             console.log(rspns);
             const userToken = rspns.data.token
             localStorage.setItem('userToken', userToken)
+            const Users = rspns.data.findUser.username
+            localStorage.setItem('Users',Users)
             toast.success("User login Successfully");
             Nvgt('/chat');
         } catch (err) {
