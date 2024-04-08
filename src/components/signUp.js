@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from 'react'
 import { Box, AppBar, Toolbar, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { userContext } from '../App'
-
+import { Axios, userContext } from '../App'
+import { toast } from 'react-toastify'
 
 const Component = styled(Box)`
 height:100vh;
@@ -17,7 +17,7 @@ box-shadow:none;
 
 
 const SignUp = () => {
-  const { user, setUser } = useContext(userContext)
+  const { user, setUser, setError } = useContext(userContext)
   const Nvgt = useNavigate()
   const refName = useRef()
   const refUserName = useRef()
@@ -25,18 +25,68 @@ const SignUp = () => {
   const refPassword = useRef()
   const refPhone = useRef()
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    const newRefName = refName.current.value
-    const newRefUserName = refUserName.current.value
-    const newRefEmail = refEmail.current.value
-    const newRefPassword = refPassword.current.value
-    const newPhone = refPhone.current.value
-    const value = { name: newRefName,username:newRefUserName, email: newRefEmail, password: newRefPassword ,phone:newPhone}
-    setUser([...user, value])
-    console.log(value);
-    Nvgt('/signin')
-  }
+
+    const newRefName = refName.current.value;
+    const newRefUserName = refUserName.current.value;
+    const newRefEmail = refEmail.current.value;
+    const newRefPassword = refPassword.current.value;
+    const newPhone = refPhone.current.value;
+
+    // Validate email
+    function validateEmail(email) {
+      const re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    }
+
+    if (
+      newRefName.length === 0 ||
+      newRefUserName.length === 0 ||
+      newRefEmail.length === 0 ||
+      newRefPassword.length === 0 ||
+      newPhone.length === 0
+    ) {
+      setError(true);
+      toast.warning(`Please fill in all the fields.`);
+      return; // stop further execution
+    }
+
+    if (!validateEmail(newRefEmail)) {
+      setError(true);
+      toast.warning(`Please enter a valid email address.`);
+      return; // stop further execution
+    }
+
+    const value = {
+      name: newRefName,
+      username: newRefUserName,
+      email: newRefEmail,
+      password: newRefPassword,
+      phone: newPhone
+    };
+
+    setUser([...user, value]);
+    // console.log(value);
+
+    try {
+      const data = {
+        name: newRefName,
+        username: newRefUserName,
+        password: newRefPassword,
+        email: newRefEmail,
+        phone: newPhone
+      };
+
+      const response = await Axios.post('http://localhost:4000/users/auth/signup', data);
+      console.log(response);
+      toast.success(`Successfully Registered`);
+      Nvgt('/signin');
+    } catch (err) {
+      toast.error(err.message || 'An error occurred while registering.');
+    }
+  };
+
   return (
     <Component>
       <Header>

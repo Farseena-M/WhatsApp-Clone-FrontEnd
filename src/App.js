@@ -1,28 +1,46 @@
- import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LoginDialog from './components/loginDialog'
 import ChatDialog from './components/chatDialog'
 import SignUp from './components/signUp'
 import SignIn from './components/signIn'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import axios from 'axios'
+
 
 export const userContext = createContext()
+
+export const Axios = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:4000/",
+  headers: {
+    Authorization: localStorage.getItem("userToken")
+  }
+
+})
+
+
 const App = () => {
-  const [user,setUser]=useState([])
-  const [login,setLogin]=useState(false)
+  const [user, setUser] = useState([])
+  const [login, setLogin] = useState(false)
+  const [error, setError] = useState(false)
   return (
-    <userContext.Provider value={{user,setUser,login,setLogin}}>
-      <Routes>
-        <Route path='/' element={<LoginDialog />}></Route>
-        <Route path='/signup' element={<SignUp />}></Route>
-        <Route path='/signin' element={<SignIn />}></Route>
-        {/* <Route path='/profile' element={<ProfileEdit />}></Route> */}
-        <Route path='/chat' element={<ChatDialog />}></Route>
-      </Routes>
-    </userContext.Provider>
+    <>
+      <userContext.Provider value={{ user, setUser, login, setLogin, error, setError }}>
+        <Routes>
+          <Route path='/' element={<LoginDialog />}></Route>
+          <Route path='/signup' element={<SignUp />}></Route>
+          <Route path='/signin' element={<SignIn />}></Route>
+          {/* <Route path='/profile' element={<ProfileEdit />}></Route> */}
+          <Route path='/chat' element={<ChatDialog />}></Route>
+        </Routes>
+      </userContext.Provider>
+      <ToastContainer theme='colored' />
+    </>
   )
 }
 
-export default App 
+export default App
 
 
 

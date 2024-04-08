@@ -1,4 +1,4 @@
-import { Box, styled , AppBar,Toolbar, Dialog} from '@mui/material'
+import { Box, styled, AppBar, Toolbar, Dialog } from '@mui/material'
 import Menu from './chat/menu/menu'
 import BlankChat from './chat/chat/chat'
 import { GoogleOAuthProvider } from '@react-oauth/google'
@@ -27,14 +27,14 @@ background-color:#00A884;
 box-shadow:none;
 `
 const dialogStyle = {
-  height:'95%',
-  width:'100%',
-  margin:'20px',
-  maxWidth:'100%',
-  maxHeight:'100%',
-  borderRadius:'0',
-  boxShadow:'none',
-  overflow:'hidden'
+  height: '95%',
+  width: '100%',
+  margin: '20px',
+  maxWidth: '100%',
+  maxHeight: '100%',
+  borderRadius: '0',
+  boxShadow: 'none',
+  overflow: 'hidden'
 }
 
 const ChatDialog = () => {
@@ -48,23 +48,23 @@ const ChatDialog = () => {
           </Toolbar>
         </Header>
         <Dialog
-        open={true}
-        PaperProps={{sx:dialogStyle}}
-        hideBackdrop={true}
-        maxWidth={'md'}
+          open={true}
+          PaperProps={{ sx: dialogStyle }}
+          hideBackdrop={true}
+          maxWidth={'md'}
         >
-        <Components>
-          <LeftComponent>
-           <Menu />
-          </LeftComponent>
-          <RightComponent>
-           {/* <BlankChat /> */}
-           <ChatBox />
-          </RightComponent>
-        </Components>
+          <Components>
+            <LeftComponent>
+              <Menu />
+            </LeftComponent>
+            <RightComponent>
+              {/* <BlankChat /> */}
+              <ChatBox />
+            </RightComponent>
+          </Components>
         </Dialog>
       </Component>
-      </GoogleOAuthProvider>
+    </GoogleOAuthProvider>
   )
 }
 
