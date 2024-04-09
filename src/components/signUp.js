@@ -25,6 +25,11 @@ const SignUp = () => {
   const refPassword = useRef()
   const refPhone = useRef()
 
+   const postDetails = () =>{
+
+   }
+
+
   const handleClick = async (e) => {
     e.preventDefault();
 
@@ -114,6 +119,10 @@ const SignUp = () => {
               <div class="mb-2">
                 <label for="exampleInputPhone" class="form-label" style={{ color: 'black' }}>Phone Number</label>
                 <input type="number" class="form-control" id="exampleInputPhone" placeholder='Enter your phone number..' ref={refPhone} />
+              </div>
+              <div class="mb-2">
+                <label for="exampleInputImage" class="form-label" style={{ color: 'black' }}>Profile</label>
+                <input type="file" class="form-control" id="exampleInputImage" p={1.5} accept='image/*' onChange={(e)=>postDetails(e.target.files[0])} />
               </div>
               <button type="submit" class="btn btn-primary mt-2" style={{ border: 'none' }} onClick={handleClick}>Register</button>
             </form>

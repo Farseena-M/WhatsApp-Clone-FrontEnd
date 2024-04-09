@@ -28,7 +28,7 @@ const Conversation = ({usr}) => {
             </Box>
             <Box>
                 <Box>
-                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>{usr.username}</Typography>
+                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>Name</Typography>
                 </Box>
             </Box>
         </Component>
