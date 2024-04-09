@@ -10,3 +10,15 @@ export const getUsers = async () => {
         console.log('Error while calling getusers API', error.message);
     }
 }  */
+
+ // Validate email
+//  function validateEmail(email) {
+//     const re = /\S+@\S+\.\S+/;
+//     return re.test(email);
+//   }
+
+/* if (!validateEmail(newRefEmail)) {
+    setError(true);
+    toast.warning(`Please enter a valid email address.`);
+    return; // stop further execution
+  } */

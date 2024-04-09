@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Box, AppBar, Toolbar, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Axios, userContext } from '../App'
@@ -24,11 +24,13 @@ const SignUp = () => {
   const refEmail = useRef()
   const refPassword = useRef()
   const refPhone = useRef()
+  const [image, setImage] = useState('')
 
-   const postDetails = () =>{
 
-   }
 
+  const handleFileChange = (file) => {
+    setImage(file);
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -39,11 +41,14 @@ const SignUp = () => {
     const newRefPassword = refPassword.current.value;
     const newPhone = refPhone.current.value;
 
+
+
     // Validate email
     function validateEmail(email) {
       const re = /\S+@\S+\.\S+/;
       return re.test(email);
     }
+
 
     if (
       newRefName.length === 0 ||
@@ -54,13 +59,13 @@ const SignUp = () => {
     ) {
       setError(true);
       toast.warning(`Please fill in all the fields.`);
-      return; // stop further execution
+      return; 
     }
 
     if (!validateEmail(newRefEmail)) {
       setError(true);
       toast.warning(`Please enter a valid email address.`);
-      return; // stop further execution
+      return; 
     }
 
     const value = {
@@ -75,15 +80,20 @@ const SignUp = () => {
     // console.log(value);
 
     try {
-      const data = {
-        name: newRefName,
-        username: newRefUserName,
-        password: newRefPassword,
-        email: newRefEmail,
-        phone: newPhone
-      };
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('name', newRefName);
+      formData.append('username', newRefUserName);
+      formData.append('email', newRefEmail);
+      formData.append('password', newRefPassword);
+      formData.append('phone', newPhone);
 
-      const response = await Axios.post('http://localhost:4000/users/auth/signup', data);
+      const response = await Axios.post('http://localhost:4000/users/auth/signup', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
       console.log(response);
       toast.success(`Successfully Registered`);
       Nvgt('/signin');
@@ -122,7 +132,7 @@ const SignUp = () => {
               </div>
               <div class="mb-2">
                 <label for="exampleInputImage" class="form-label" style={{ color: 'black' }}>Profile</label>
-                <input type="file" class="form-control" id="exampleInputImage" p={1.5} accept='image/*' onChange={(e)=>postDetails(e.target.files[0])} />
+                <input type="file" class="form-control" id="exampleInputImage" p={1.5} accept='image/*' onChange={(e) => handleFileChange(e.target.files[0])} />
               </div>
               <button type="submit" class="btn btn-primary mt-2" style={{ border: 'none' }} onClick={handleClick}>Register</button>
             </form>

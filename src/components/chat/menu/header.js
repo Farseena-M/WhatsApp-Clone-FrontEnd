@@ -37,7 +37,7 @@ const toggleDrawer = () =>{
     <Image src={dp} alt='dp' onClick={()=>toggleDrawer()} style={{cursor:'pointer'}}/>
     <Wrapper>
      <ChatIcon />
-     <HeaderMenu  setOpenDrawer={setOpenDrawer}/>
+     <HeaderMenu open={openDrawer} setOpenDrawer={setOpenDrawer}/>
     </Wrapper>
   </Component>
   <InfoDrawer open={openDrawer} setOpen={setOpenDrawer}/>
