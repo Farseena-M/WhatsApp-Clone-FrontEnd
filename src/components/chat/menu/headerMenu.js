@@ -11,9 +11,9 @@ color:#4A4A4A;
 
 function HeaderMenu({setOpenDrawer}) {
 
-const [open,setOpen] = useState(null)
+const [open,setOpen] = useState(false)
  const handleClose = () =>{
- setOpen(null)
+ setOpen(false)
  }
  const handleClick = (e) =>{
  setOpen(e.currentTarget)
@@ -24,9 +24,9 @@ const [open,setOpen] = useState(null)
             <Menu
                 anchorEl={open}
                 keepMounted
-                open={open}
+                open={Boolean(open)} 
                 onClose={handleClose}
-                getContentAnchorE1={null}
+                getcontentanchore1={null}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center',

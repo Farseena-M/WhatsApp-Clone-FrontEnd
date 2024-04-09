@@ -13,7 +13,7 @@ display:flex;
 `
 const Wrapper = styled(Box)`
 margin-left:auto;
-& : first-child{
+& > *:first-of-type {
   font-size:22px;
   margin-right:8px;
   margin-top:3px
