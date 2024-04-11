@@ -107,7 +107,7 @@ const SignUp = () => {
       <Header>
         <Toolbar>
           <div class="container-fluid" style={{ position: 'relative', top: '200px', }}>
-            <form class="mx-auto" >
+            <form className="mx-auto" >
               <h4 class="text-center" style={{ color: 'black', fontFamily: 'inherit' }}>SignUp</h4>
               <div class="mb-2 mt-3">
                 <label for="exampleInputname" class="form-label" style={{ color: 'black' }}>Name</label>
