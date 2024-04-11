@@ -58,20 +58,20 @@ const SignIn = () => {
         <Component>
             <Header>
                 <Toolbar>
-                    <div class="container-fluid" style={{ position: 'relative', top: '200px', }}>
-                        <form class="mx-auto">
-                            <h4 class="text-center" style={{ color: 'black' }}>Login</h4>
-                            <div class="mb-3 mt-5">
-                                <label for="exampleInputEmail" class="form-label" style={{ color: 'black' }}>Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder='Enter your email..' ref={reffEmail} />
+                    <div className="container-fluid" style={{ position: 'relative', top: '200px', }}>
+                        <form className="mx-auto">
+                            <h4 className="text-center" style={{ color: 'black' }}>Login</h4>
+                            <div className="mb-3 mt-5">
+                                <label htmlFor="exampleInputEmail" className="form-label" style={{ color: 'black' }}>Email</label>
+                                <input type="email" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder='Enter your email..' ref={reffEmail} />
                             </div>
 
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label" style={{ color: 'black' }}>Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder='Enter your password..' ref={reffPassword} />
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputPassword1" className="form-label" style={{ color: 'black' }}>Password</label>
+                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter your password..' ref={reffPassword} />
                             </div>
-                            <button type="submit" class="btn btn-primary mt-2" style={{ border: 'none' }} onClick={hndlClick}>Login</button>
-                            <button type="submit" class="btn btn-primary mt-2" style={{ border: 'none' }} onClick={() => Nvgt('/signup')}>SignUp</button>
+                            <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={hndlClick}>Login</button>
+                            <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={() => Nvgt('/signup')}>SignUp</button>
                         </form>
                     </div>
                 </Toolbar>

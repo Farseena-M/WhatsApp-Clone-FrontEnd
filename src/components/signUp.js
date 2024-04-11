@@ -106,35 +106,35 @@ const SignUp = () => {
     <Component>
       <Header>
         <Toolbar>
-          <div class="container-fluid" style={{ position: 'relative', top: '200px', }}>
+          <div className="container-fluid" style={{ position: 'relative', top: '200px', }}>
             <form className="mx-auto" >
-              <h4 class="text-center" style={{ color: 'black', fontFamily: 'inherit' }}>SignUp</h4>
-              <div class="mb-2 mt-3">
-                <label for="exampleInputname" class="form-label" style={{ color: 'black' }}>Name</label>
-                <input type="name" class="form-control" id="exampleInputname" aria-describedby="emailHelp" placeholder='Enter your name..' ref={refName} />
+              <h4 className="text-center" style={{ color: 'black', fontFamily: 'inherit' }}>SignUp</h4>
+              <div className="mb-2 mt-3">
+                <label htmlFor="exampleInputname" className="form-label" style={{ color: 'black' }}>Name</label>
+                <input type="name" className="form-control" id="exampleInputname" aria-describedby="emailHelp" placeholder='Enter your name..' ref={refName} />
               </div>
-              <div class="mb-2 mt-2">
-                <label for="exampleInputUsername" class="form-label" style={{ color: 'black' }}>User Name</label>
-                <input type="username" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" placeholder='Enter your username..' ref={refUserName} />
+              <div className="mb-2 mt-2">
+                <label htmlFor="exampleInputUsername" className="form-label" style={{ color: 'black' }}>User Name</label>
+                <input type="username" className="form-control" id="exampleInputUsername" aria-describedby="emailHelp" placeholder='Enter your username..' ref={refUserName} />
               </div>
-              <div class="mb-2 mt-2">
-                <label for="exampleInputEmail" class="form-label" style={{ color: 'black' }}>Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder='Enter your email..' ref={refEmail} />
+              <div className="mb-2 mt-2">
+                <label htmlFor="exampleInputEmail" className="form-label" style={{ color: 'black' }}>Email</label>
+                <input type="email" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder='Enter your email..' ref={refEmail} />
               </div>
-              <div class="mb-2">
-                <label for="exampleInputPassword1" class="form-label" style={{ color: 'black' }}>Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder='Enter your password..' ref={refPassword} />
+              <div className="mb-2">
+                <label htmlFor="exampleInputPassword1" className="form-label" style={{ color: 'black' }}>Password</label>
+                <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter your password..' ref={refPassword} />
                 {/* <div id="emailHelp" class="form-text mt-" style={{cursor:'pointer'}}>Forget password ?</div> */}
               </div>
-              <div class="mb-2">
-                <label for="exampleInputPhone" class="form-label" style={{ color: 'black' }}>Phone Number</label>
-                <input type="number" class="form-control" id="exampleInputPhone" placeholder='Enter your phone number..' ref={refPhone} />
+              <div className="mb-2">
+                <label htmlFor="exampleInputPhone" className="form-label" style={{ color: 'black' }}>Phone Number</label>
+                <input type="number" className="form-control" id="exampleInputPhone" placeholder='Enter your phone number..' ref={refPhone} />
               </div>
-              <div class="mb-2">
-                <label for="exampleInputImage" class="form-label" style={{ color: 'black' }}>Profile</label>
-                <input type="file" class="form-control" id="exampleInputImage" p={1.5} accept='image/*' onChange={(e) => handleFileChange(e.target.files[0])} />
+              <div className="mb-2">
+                <label htmlFor="exampleInputImage" className="form-label" style={{ color: 'black' }}>Profile</label>
+                <input type="file" className="form-control" id="exampleInputImage" p={1.5} accept='image/*' onChange={(e) => handleFileChange(e.target.files[0])} />
               </div>
-              <button type="submit" class="btn btn-primary mt-2" style={{ border: 'none' }} onClick={handleClick}>Register</button>
+              <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={handleClick}>Register</button>
             </form>
           </div>
         </Toolbar>
