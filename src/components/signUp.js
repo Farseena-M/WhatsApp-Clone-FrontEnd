@@ -94,7 +94,7 @@ const SignUp = () => {
         }
       });
 
-      console.log(response);
+      // console.log(response);
       const Profile = response.data.image
       localStorage.setItem('Profile', Profile)
       toast.success(`Successfully Registered`);

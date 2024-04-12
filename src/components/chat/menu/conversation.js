@@ -1,4 +1,4 @@
-import { Box, Typography,styled } from '@mui/material'
+import { Box, Typography, styled } from '@mui/material'
 import React from 'react'
 // import dp from '../../assets/Butterfly.png'
 
@@ -10,30 +10,28 @@ padding:13px 0;
 cursor:pointer;
 `
 const Image = styled('img')({
-    height:'45px',
-    width:'75px',
-    borderRadius:'50%',
-    padding:'0 14px',
-    objectFit:'cover'
+    height: '45px',
+    width: '75px',
+    borderRadius: '50%',
+    padding: '0 14px',
+    objectFit: 'cover'
 })
 
 
-const Conversation = ({usr}) => {
-    const profilePic = usr.image 
-    console.log(profilePic);
+const Conversation = ({ usr }) => {
     return (
-        
-            <Component>
+
+        <Component>
             <Box>
-                <Image src={profilePic} alt='dp' />
+                <Image src={usr.image} alt='dp' />
             </Box>
             <Box>
                 <Box>
-                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>{usr.name}</Typography>
+                    <Typography style={{ fontFamily: 'inherit', padding: '10px 10px' }}>{usr.name}</Typography>
                 </Box>
             </Box>
         </Component>
-        )
+    )
 }
 
 export default Conversation

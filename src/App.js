@@ -24,9 +24,11 @@ const App = () => {
   const [user, setUser] = useState([])
   const [login, setLogin] = useState(false)
   const [error, setError] = useState(false)
+  const [open,setOpen] = useState(false)
+
   return (
     <>
-      <userContext.Provider value={{ user, setUser, login, setLogin, error, setError }}>
+      <userContext.Provider value={{ user, setUser, login, setLogin, error, setError ,open,setOpen }}>
         <Routes>
           <Route path='/' element={<LoginDialog />}></Route>
           <Route path='/signup' element={<SignUp />}></Route>
