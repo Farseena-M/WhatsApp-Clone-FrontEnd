@@ -1,6 +1,6 @@
 import { Box, Typography,styled } from '@mui/material'
 import React from 'react'
-import dp from '../../assets/Butterfly.png'
+// import dp from '../../assets/Butterfly.png'
 
 
 const Component = styled(Box)`
@@ -19,16 +19,17 @@ const Image = styled('img')({
 
 
 const Conversation = ({usr}) => {
-    
+    const profilePic = usr.image 
+    console.log(profilePic);
     return (
         
             <Component>
             <Box>
-                <Image src={dp} alt='dp' />
+                <Image src={profilePic} alt='dp' />
             </Box>
             <Box>
                 <Box>
-                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>Name</Typography>
+                    <Typography style={{fontFamily:'inherit',padding:'10px 10px'}}>{usr.name}</Typography>
                 </Box>
             </Box>
         </Component>

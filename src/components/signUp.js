@@ -59,13 +59,13 @@ const SignUp = () => {
     ) {
       setError(true);
       toast.warning(`Please fill in all the fields.`);
-      return; 
+      return;
     }
 
     if (!validateEmail(newRefEmail)) {
       setError(true);
       toast.warning(`Please enter a valid email address.`);
-      return; 
+      return;
     }
 
     const value = {
@@ -95,6 +95,8 @@ const SignUp = () => {
       });
 
       console.log(response);
+      const Profile = response.data.image
+      localStorage.setItem('Profile', Profile)
       toast.success(`Successfully Registered`);
       Nvgt('/signin');
     } catch (err) {
