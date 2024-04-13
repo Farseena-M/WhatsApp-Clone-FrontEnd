@@ -23,7 +23,7 @@ const Conversation = ({ usr }) => {
 
         <Component>
             <Box>
-                <Image src={usr.image} alt='dp' />
+                <Image src={usr.image} alt={usr.name} />
             </Box>
             <Box>
                 <Box>

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, InputBase ,styled} from '@mui/material';
+import { Box, InputBase, styled } from '@mui/material';
+import { userContext } from '../../../App';
 
 const Component = styled(Box)`
 background:#fff;
@@ -33,18 +34,24 @@ font-size:14px;
 `
 
 const Search = () => {
+  const { setSearch } = useContext(userContext)
+
+
   return (
     <Component>
-        <Wrapper>
-            <Icon>
-             <SearchIcon 
-             fontSize='small'
-             />
-            </Icon>
-            <InputField 
-            placeholder='Search or start new chat'
-            />
-        </Wrapper>
+      <Wrapper>
+        <Icon>
+          <SearchIcon
+            fontSize='small'
+          />
+        </Icon>
+        <InputField
+          placeholder='Search or start new chat'
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
+      </Wrapper>
     </Component>
   )
 }
