@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Box} from '@mui/material'
 import ChatHeader from './chatHeader'
 import Messages from './messages'
+import { userContext } from '../../../App'
 
 
 
 const ChatBox = () => {
+  const {person} = useContext(userContext)
   return (
     <Box style={{height:'75%'}}>
-      <ChatHeader />
-      <Messages />
+      <ChatHeader person={person}/>
+      <Messages person={person}/>
     </Box>
   )
 }

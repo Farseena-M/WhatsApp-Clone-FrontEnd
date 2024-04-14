@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import Conversation from './conversation';
 import { Box, Divider, styled } from '@mui/material';
 import { Axios, userContext } from '../../../App';
-import { toast } from 'react-toastify';
 
 const Component = styled(Box)`
   height: 81vh;
@@ -38,11 +37,10 @@ const Conversations = () => {
         console.log(response.data.data);
         setUser(response.data.data);
       } catch (err) {
-        toast.error('Error fetching users:', err);
+        console.log('Error fetching users:', err);
       }
     };
     fetchUsers();
-
   }, [setUser]);
 
   return (

@@ -1,7 +1,6 @@
 import { Box, Typography, styled } from '@mui/material'
-import React from 'react'
-// import dp from '../../assets/Butterfly.png'
-
+import React, { useContext } from 'react'
+import { userContext } from '../../../App'
 
 const Component = styled(Box)`
 display:flex;
@@ -19,9 +18,27 @@ const Image = styled('img')({
 
 
 const Conversation = ({ usr }) => {
+
+    const { setPerson } = useContext(userContext)
+    const userId = localStorage.getItem('userId')
+
+    const setConversation = () =>{
+        try{
+
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
+    const getUser = async () => {
+        setPerson(usr);      
+        await setConversation({senderId : userId , recieverId : usr._id})
+    }
+
     return (
 
-        <Component>
+        <Component onClick={() => getUser()}>
             <Box>
                 <Image src={usr.image} alt={usr.name} />
             </Box>

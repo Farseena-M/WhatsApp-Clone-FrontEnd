@@ -2,8 +2,6 @@ import React from 'react'
 import { Box, Typography, styled } from '@mui/material'
 import { Search, MoreVert } from '@mui/icons-material'
 import VideocamIcon from '@mui/icons-material/Videocam';
-import dp from '../../assets/Butterfly.png'
-
 
 const Header = styled(Box)`
 height:55px;
@@ -37,13 +35,13 @@ margin-left:auto;
 `
 
 
-const ChatHeader = () => {
+const ChatHeader = ({person}) => {
   return (
     <Header>
-      <Image src={dp} alt='dp' />
+      <Image src={person.image} alt='dp' />
       <Box>
-        <Name>Name</Name>
-        <Status>Online status</Status>
+        <Name>{person.name}</Name>
+        <Status>Offline</Status>
       </Box>
       <RightContainer>
         <VideocamIcon />

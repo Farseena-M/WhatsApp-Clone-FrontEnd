@@ -1,8 +1,9 @@
 import { Box, styled, AppBar, Toolbar, Dialog } from '@mui/material'
 import Menu from './chat/menu/menu'
 import BlankChat from './chat/chat/chat'
-import { GoogleOAuthProvider } from '@react-oauth/google'
 import ChatBox from './chat/chat/chatBox'
+import { useContext } from 'react'
+import { userContext } from '../App'
 
 const Components = styled(Box)`
 display:flex;
@@ -38,33 +39,31 @@ const dialogStyle = {
 }
 
 const ChatDialog = () => {
-  const clientId = ''
-  return (
-    <GoogleOAuthProvider clientId={clientId}>
-      <Component>
-        <Header>
-          <Toolbar>
 
-          </Toolbar>
-        </Header>
-        <Dialog
-          open={true}
-          PaperProps={{ sx: dialogStyle }}
-          hideBackdrop={true}
-          maxWidth={'md'}
-        >
-          <Components>
-            <LeftComponent>
-              <Menu />
-            </LeftComponent>
-            <RightComponent>
-              {/* <BlankChat /> */}
-              <ChatBox />
-            </RightComponent>
-          </Components>
-        </Dialog>
-      </Component>
-    </GoogleOAuthProvider>
+  const { person } = useContext(userContext)
+  return (
+    <Component>
+      <Header>
+        <Toolbar>
+
+        </Toolbar>
+      </Header>
+      <Dialog
+        open={true}
+        PaperProps={{ sx: dialogStyle }}
+        hideBackdrop={true}
+        maxWidth={'md'}
+      >
+        <Components>
+          <LeftComponent>
+            <Menu />
+          </LeftComponent>
+          <RightComponent>
+            {Object.keys(person).length ? <ChatBox /> : <BlankChat />}
+          </RightComponent>
+        </Components>
+      </Dialog>
+    </Component>
   )
 }
 
