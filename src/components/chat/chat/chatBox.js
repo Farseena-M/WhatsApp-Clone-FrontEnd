@@ -17,7 +17,7 @@ const ChatBox = () => {
       const res = await Axios.post('http://localhost:4000/users/conversation/get', data)
       return res.data
     } catch (err) {
-      console.log(`Error while calling getConversation api`, err);
+      console.log(`Error while calling getConversation api`, err.message);
     }
   }
 
