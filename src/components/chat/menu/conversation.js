@@ -1,6 +1,6 @@
 import { Box, Typography, styled } from '@mui/material'
 import React, { useContext } from 'react'
-import { userContext } from '../../../App'
+import { Axios, userContext } from '../../../App'
 
 const Component = styled(Box)`
 display:flex;
@@ -22,11 +22,11 @@ const Conversation = ({ usr }) => {
     const { setPerson } = useContext(userContext)
     const userId = localStorage.getItem('userId')
 
-    const setConversation = () =>{
+    const setConversation = async(data) =>{
         try{
-
+        await Axios.post('http://localhost:4000/users/conversation/add',data)
         }catch(err){
-            console.log(err);
+            console.log(`Error while calling setConversation api`,err);
         }
     }
 

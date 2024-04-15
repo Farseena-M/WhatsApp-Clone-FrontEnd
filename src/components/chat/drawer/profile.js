@@ -1,6 +1,5 @@
 import { Box, Typography, styled } from '@mui/material'
 import React from 'react'
-// import dp from '../../assets/Butterfly.png'
 
 const ImageContainer = styled(Box)`
     display:flex;
@@ -39,9 +38,11 @@ padding:15px 20px 28px 30px;
 const ProfileEdit = ({ handleImageClick }) => {
     const profile = localStorage.getItem('Profile')
     const userName = localStorage.getItem('UserName')
+    // const userId = localStorage.getItem('userId')
+
     return (
         <>
-            <ImageContainer>
+            <ImageContainer >
                 <Image src={profile} alt='dp' style={{ cursor: 'pointer' }} onClick={handleImageClick} />
             </ImageContainer>
             <BoxWrapper>
