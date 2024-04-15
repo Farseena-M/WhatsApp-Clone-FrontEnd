@@ -30,7 +30,8 @@ const Clip =styled(AttachFile)`
 transform:rotate(40deg)
 `
 
-const ChatFooter = () => {
+const ChatFooter = ({sendText,setValue}) => {
+
   return (
     <Container>
     <EmojiEmotionsOutlined />
@@ -38,6 +39,8 @@ const ChatFooter = () => {
     <Search>
     <InputField 
     placeholder='Type a message'
+    onChange={(e)=>setValue(e.target.value)}
+    onKeyPress={(e)=>sendText(e)}
     />
     </Search>
     <Mic />

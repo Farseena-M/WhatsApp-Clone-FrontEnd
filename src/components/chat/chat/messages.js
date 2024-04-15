@@ -1,6 +1,7 @@
-import { Box,styled } from '@mui/material'
-import React from 'react'
+import { Box, styled } from '@mui/material'
+import React, { useContext } from 'react'
 import ChatFooter from './chatFooter'
+import { userContext } from '../../../App'
 
 const Wrapper = styled(Box)`
 background-image:url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'})
@@ -11,13 +12,32 @@ overflow-y:scroll;
 `
 
 
-const Messages = () => {
-  return (
-    <Wrapper style={{backgroundSize:'50%'}}>
-    <Component>
+const Messages = ({ person, conversation }) => {
 
-    </Component>
-    <ChatFooter />
+  const userId = localStorage.getItem('userId')
+  const { value, setValue } = useContext(userContext)
+ console.log(conversation);
+  const sendText = (e) => {
+    // console.log(e);
+    const code = e.keyCode || e.which
+    if (code === 13) {
+      let message = {
+        senderId: userId,
+        recieverId: person._id,
+        conversationId: conversation._id,
+        type: 'text',
+        text: value
+      }
+      console.log(message);
+    }
+  }
+
+  return (
+    <Wrapper style={{ backgroundSize: '50%' }}>
+      <Component>
+
+      </Component>
+      <ChatFooter sendText={sendText} setValue={setValue} />
     </Wrapper>
   )
 }

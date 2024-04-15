@@ -26,11 +26,16 @@ const App = () => {
   const [error, setError] = useState(false)
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
-  const [person,setPerson] = useState({})
+  const [person, setPerson] = useState({})
+  const [conversation, setConversation] = useState({})
+  const [value, setValue] = useState('')
 
   return (
     <>
-      <userContext.Provider value={{ user, setUser, login, setLogin, error, setError, open, setOpen, search, setSearch ,person,setPerson}}>
+      <userContext.Provider value={{
+        user, setUser, login, setLogin, error, setError, open, setOpen,
+        search, setSearch, person, setPerson, value, setValue,conversation, setConversation
+      }}>
         <Routes>
           <Route path='/' element={<LoginDialog />}></Route>
           <Route path='/signup' element={<SignUp />}></Route>
