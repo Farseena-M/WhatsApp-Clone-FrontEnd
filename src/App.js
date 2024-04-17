@@ -7,6 +7,7 @@ import SignIn from './components/signIn'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import axios from 'axios'
+import ProfileEdit from './components/profileEdit'
 
 
 export const userContext = createContext()
@@ -29,18 +30,20 @@ const App = () => {
   const [person, setPerson] = useState({})
   const [conversation, setConversation] = useState({})
   const [value, setValue] = useState('')
+  const [messages, setMessages] = useState([])
 
   return (
     <>
       <userContext.Provider value={{
         user, setUser, login, setLogin, error, setError, open, setOpen,
-        search, setSearch, person, setPerson, value, setValue,conversation, setConversation
+        search, setSearch, person, setPerson, value, setValue, conversation, setConversation,
+        messages, setMessages
       }}>
         <Routes>
           <Route path='/' element={<LoginDialog />}></Route>
           <Route path='/signup' element={<SignUp />}></Route>
           <Route path='/signin' element={<SignIn />}></Route>
-          {/* <Route path='/profile' element={<ProfileEdit />}></Route> */}
+          <Route path='/profile' element={<ProfileEdit />}></Route>
           <Route path='/chat' element={<ChatDialog />}></Route>
         </Routes>
       </userContext.Provider>

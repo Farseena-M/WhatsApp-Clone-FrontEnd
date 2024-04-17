@@ -1,6 +1,6 @@
 import { Box, Typography, styled } from '@mui/material'
 import React, { useContext } from 'react'
-import { Axios, userContext } from '../../../App'
+import { userContext } from '../../../App'
 
 const Component = styled(Box)`
 display:flex;
@@ -20,20 +20,9 @@ const Image = styled('img')({
 const Conversation = ({ usr }) => {
 
     const { setPerson } = useContext(userContext)
-    const userId = localStorage.getItem('userId')
-
-    const setConversation = async(data) =>{
-        try{
-        await Axios.post('http://localhost:4000/users/conversation/add',data)
-        }catch(err){
-            console.log(`Error while calling setConversation api`,err);
-        }
-    }
-
 
     const getUser = async () => {
-        setPerson(usr);      
-        await setConversation({senderId : userId , recieverId : usr._id})
+        setPerson(usr);
     }
 
     return (

@@ -48,6 +48,7 @@ function HeaderMenu({ setOpenDrawer }) {
                 }}
             >
                 <MenuOption onClick={() => { handleClose(); setOpenDrawer(true); }}>Profile</MenuOption>
+                <MenuOption onClick={()=>Nvgt('/profile')}>ProfileEdit</MenuOption>
                 <MenuOption onClick={logoutUser}>Logout</MenuOption>
             </Menu>
         </>
