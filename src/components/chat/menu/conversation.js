@@ -1,43 +1,41 @@
-import { Box, Typography, styled } from '@mui/material'
-import React, { useContext } from 'react'
-import { userContext } from '../../../App'
+import { Box, Typography, styled } from '@mui/material';
+import React from 'react';
+import { useConversation } from '../../../api/zustand';
 
-const Component = styled(Box)`
-display:flex;
-height:'45px';
-padding:13px 0;
-cursor:pointer;
-`
+const Component = styled(Box)(({ isSelected }) => ({
+    display: 'flex',
+    height: '70px',
+    padding: '13px 0',
+    cursor: 'pointer',
+    backgroundColor: isSelected ? '#ededed' : '', // Conditionally set background color
+}));
+
 const Image = styled('img')({
     height: '45px',
     width: '75px',
     borderRadius: '50%',
     padding: '0 14px',
-    objectFit: 'cover'
-})
+    objectFit: 'cover',
+});
 
-
-const Conversation = ({ usr }) => {
-
-    const { setPerson } = useContext(userContext)
-
-    const getUser = async () => {
-        setPerson(usr);
-    }
+const Conversation = ({ conversation }) => {
+    const { selectedConversation, setSelectedConversation } = useConversation();
+    const isSelected = selectedConversation?._id === conversation._id;
 
     return (
-
-        <Component onClick={() => getUser()}>
+        <Component isSelected={isSelected} onClick={() => setSelectedConversation(conversation)}>
             <Box>
-                <Image src={usr.image} alt={usr.name} />
+                <Image src={conversation.image} alt={conversation.name} />
             </Box>
             <Box>
                 <Box>
-                    <Typography style={{ fontFamily: 'inherit', padding: '10px 10px' }}>{usr.name}</Typography>
+                    <Typography style={{ fontFamily: 'inherit', padding: '10px 10px' }}>
+                        {conversation.name}
+                    </Typography>
                 </Box>
             </Box>
         </Component>
-    )
-}
+    );
+};
 
-export default Conversation
+export default Conversation;

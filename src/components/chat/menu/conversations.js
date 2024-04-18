@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Conversation from './conversation';
 import { Box, Divider, styled } from '@mui/material';
-import { Axios, userContext } from '../../../App';
+import { userContext } from '../../../App';
+import { useGetConversations } from '../../../api/api';
 
 const Component = styled(Box)`
   height: 81vh;
@@ -15,11 +16,11 @@ const StyledDivider = styled(Divider)`
 `;
 
 const Conversations = () => {
-  const { user, setUser, search } = useContext(userContext);
+  const { search } = useContext(userContext);
   const mainUser = localStorage.getItem('Name')
+  const { conversations, loading } = useGetConversations()
 
-
-  const searchUser = user.filter((val) => {
+  const searchUser = conversations.filter((val) => {
     if (search === '') {
       return val;
     } else if (val.name.toLowerCase().includes(search.toLowerCase())) {
@@ -30,28 +31,21 @@ const Conversations = () => {
   })
 
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await Axios.get('http://localhost:4000/users/all');
-        console.log(response.data.data);
-        setUser(response.data.data);
-      } catch (err) {
-        console.log('Error fetching users:', err);
-      }
-    };
-    fetchUsers();
-  }, [setUser]);
-
   return (
     <Component>
-      {searchUser.map((usr) => (
-        mainUser !== usr.name &&
-        <div key={usr._id}>
-          <Conversation usr={usr} />
-          <StyledDivider />
-        </div>
-      ))}
+
+      <div>
+        {searchUser.map((conversation) => (
+          mainUser !== conversation.name &&
+          <div key={conversation._id} >
+            <Conversation conversation={conversation} />
+            <StyledDivider />
+          </div>
+        ))}
+
+        {loading ? <span className='loading loading-spinner mx-auto'></span> : null}
+      </div>
+
     </Component>
   );
 };

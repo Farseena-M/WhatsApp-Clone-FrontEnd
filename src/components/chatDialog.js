@@ -2,8 +2,7 @@ import { Box, styled, AppBar, Toolbar, Dialog } from '@mui/material'
 import Menu from './chat/menu/menu'
 import BlankChat from './chat/chat/chat'
 import ChatBox from './chat/chat/chatBox'
-import { useContext } from 'react'
-import { userContext } from '../App'
+import { useConversation } from '../api/zustand'
 
 const Components = styled(Box)`
 display:flex;
@@ -40,7 +39,7 @@ const dialogStyle = {
 
 const ChatDialog = () => {
 
-  const { person } = useContext(userContext)
+ const {selectedConversation}= useConversation()
   return (
     <Component>
       <Header>
@@ -59,7 +58,7 @@ const ChatDialog = () => {
             <Menu />
           </LeftComponent>
           <RightComponent>
-            {Object.keys(person).length ? <ChatBox /> : <BlankChat />}
+            {!selectedConversation ?  <BlankChat /> : <ChatBox /> }
           </RightComponent>
         </Components>
       </Dialog>

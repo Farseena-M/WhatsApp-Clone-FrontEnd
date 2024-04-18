@@ -88,15 +88,14 @@ const SignUp = () => {
       formData.append('password', newRefPassword);
       formData.append('phone', newPhone);
 
-      const response = await Axios.post('http://localhost:4000/users/auth/signup', formData, {
+      const res = await Axios.post('http://localhost:4000/users/auth/signup', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
+        
       });
-
-      // console.log(response);
-      const Profile = response.data.image
-      localStorage.setItem('Profile', Profile)
+      const data = res.data
+      // console.log(data);
       toast.success(`Successfully Registered`);
       Nvgt('/signin');
     } catch (err) {

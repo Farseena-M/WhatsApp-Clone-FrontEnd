@@ -1,55 +1,41 @@
-import { Box, Typography, styled } from '@mui/material'
-import React from 'react'
+import { Box, Typography, styled } from '@mui/material';
+import React from 'react';
+import { formatDate } from '../../../api/messageTime';
 
-const Own = styled(Box)`
-background:#dcf8c6;
-max-width:60%;
-margin-left:auto;
-padding:5px;
-width:fit-content;
-display:flex;
-border-radius:10px;
-word-break:break-word;
-`
-// const Wrapper = styled(Box)`
-// background:#FFFFFF;
-// max-width:60%;
-// padding:5px;
-// width:fit-content;
-// display:flex;
-// border-radius:10px;
-// word-break:break-word;
-// `
+const MessageContainer = styled(Box)`
+  max-width: 60%;
+  padding: 5px;
+  width: fit-content;
+  display: flex;
+  border-radius: 10px;
+  word-break: break-word;
+  margin-top: 3px;
+  background: ${(props) => (props.own ? '#dcf8c6' : '#FFFFFF')};
+  margin-left: ${(props) => (props.own ? 'auto' : 'initial')};
+`;
+
 const Text = styled(Typography)`
-font-size:14px;
-padding: 0 25px 0 5px ;
-`
+  font-size: 14px;
+  padding: 0 25px 0 5px;
+`;
 
 const Time = styled(Typography)`
-font-size:10px;
-color:#919191;
-margin-top:6px;
-word-break:keep-all;
-margin-top:auto;
-`
+  font-size: 10px;
+  color: #919191;
+  margin-top: 6px;
+  word-break: keep-all;
+  margin-top: auto;
+`;
+const Msg = ({ message}) => {
+  const userId = localStorage.getItem('userId');
+  const fromMe = message.sender === userId;
 
-const Msg = () => {
+  return (
+    <MessageContainer own={fromMe}>
+      <Text>{message.message}</Text>
+      <Time>{formatDate(message.createdAt)}</Time>
+    </MessageContainer>
+  );
+};
 
-
-    // const formatDate = (date) => {
-    //     const hours = new Date(date).getHours()
-    //     const minutes = new Date(date).getMinutes()
-    //     return `${hours < 10 ? '0' + hours : hours} : ${minutes < 10 ? '0' + minutes : minutes}`
-    // }
-
-    return (
-        <>
-            <Own>
-                <Text>hii</Text>
-                <Time>7</Time>
-            </Own>
-        </>
-    )
-}
-
-export default Msg
+export default Msg;
