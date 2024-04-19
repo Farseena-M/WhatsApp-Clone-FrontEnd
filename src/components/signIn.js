@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef} from 'react'
 import { Box, AppBar, Toolbar, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import './signIn.css'
@@ -19,7 +19,6 @@ box-shadow:none;
 const SignIn = () => {
     const Nvgt = useNavigate()
     const { setError } = useContext(userContext)
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const reffEmail = useRef()
     const reffPassword = useRef()
 
@@ -53,7 +52,6 @@ const SignIn = () => {
             localStorage.setItem('userId', userId)
             const Profile = rspns.data.findUser.image
             localStorage.setItem('Profile', Profile)
-            setIsLoggedIn(true)
             toast.success("User login Successfully");
             Nvgt('/chat');
         } catch (err) {

@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import ProfileEdit from './components/profileEdit';
-import AccountContextProvider from '././AccountContext/accountContext'
 
 export const userContext = createContext();
 
@@ -27,6 +26,7 @@ const App = () => {
   const [search, setSearch] = useState('');
   const [conversation, setConversation] = useState({});
   const [messages, setMessages] = useState([]);
+
 
   return (
     <userContext.Provider value={{
