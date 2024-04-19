@@ -3,6 +3,7 @@ import Conversation from './conversation';
 import { Box, Divider, styled } from '@mui/material';
 import { userContext } from '../../../App';
 import { useGetConversations } from '../../../api/api';
+import { useAuthContext } from '../../../AccountContext/accountContext';
 
 const Component = styled(Box)`
   height: 81vh;
@@ -17,8 +18,8 @@ const StyledDivider = styled(Divider)`
 
 const Conversations = () => {
   const { search } = useContext(userContext);
-  const mainUser = localStorage.getItem('Name')
   const { conversations, loading } = useGetConversations()
+  const {authUser} = useAuthContext()
 
   const searchUser = conversations.filter((val) => {
     if (search === '') {
@@ -36,7 +37,7 @@ const Conversations = () => {
 
       <div>
         {searchUser.map((conversation) => (
-          mainUser !== conversation.name &&
+          authUser.name !== conversation.name &&
           <div key={conversation._id} >
             <Conversation conversation={conversation} />
             <StyledDivider />

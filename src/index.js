@@ -5,11 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { SocketContextProvider } from './api/socketContext';
+import { AuthContextProvider } from './AccountContext/accountContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+    {/* <SocketContextProvider> */}
+    <AuthContextProvider>
       <App />
+      </AuthContextProvider>
+    {/* </SocketContextProvider> */}
   </BrowserRouter>
 );
 

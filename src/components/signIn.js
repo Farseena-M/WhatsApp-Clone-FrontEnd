@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './signIn.css'
 import { Axios, userContext } from '../App'
 import { toast } from 'react-toastify'
+import { useAuthContext } from '../AccountContext/accountContext'
 
 
 const Component = styled(Box)`
@@ -19,6 +20,7 @@ box-shadow:none;
 const SignIn = () => {
     const Nvgt = useNavigate()
     const { setError } = useContext(userContext)
+    const {setAuthUser} = useAuthContext()
     const reffEmail = useRef()
     const reffPassword = useRef()
 
@@ -44,14 +46,9 @@ const SignIn = () => {
             console.log(rspns); 
             const userToken = rspns.data.token
             localStorage.setItem('userToken', userToken)
-            const UserName = rspns.data.findUser.username
-            localStorage.setItem('UserName', UserName)
-            const Name = rspns.data.findUser.name
-            localStorage.setItem('Name', Name)
-            const userId = rspns.data.findUser._id
-            localStorage.setItem('userId', userId)
-            const Profile = rspns.data.findUser.image
-            localStorage.setItem('Profile', Profile)
+            const Data = rspns.data.findUser
+            localStorage.setItem('chat-user', JSON.stringify(Data))
+            setAuthUser(Data)
             toast.success("User login Successfully");
             Nvgt('/chat');
         } catch (err) {

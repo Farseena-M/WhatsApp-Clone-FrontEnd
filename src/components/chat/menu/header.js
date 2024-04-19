@@ -3,7 +3,7 @@ import { Box, styled } from '@mui/material'
 import ChatIcon from '@mui/icons-material/Chat';
 import HeaderMenu from './headerMenu';
 import InfoDrawer from '../drawer/drawer';
-// import dp from '../../assets/Butterfly.png'
+import { useAuthContext} from '../../../AccountContext/accountContext';
 
 const Component = styled(Box)`
 height:55px;
@@ -27,15 +27,17 @@ const Image = styled('img')({
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
+  const {authUser} = useAuthContext()
+
   const toggleDrawer = () => {
     setOpenDrawer(true)
   }
-  const profile = localStorage.getItem("Profile")
+
 
   return (
     <>
       <Component>
-        <Image src={profile} alt='dp' onClick={() => toggleDrawer()} style={{ cursor: 'pointer' }} />
+        <Image src={authUser.image} alt='dp' onClick={() => toggleDrawer()} style={{ cursor: 'pointer' }} />
         <Wrapper>
           <ChatIcon />
           <HeaderMenu open={openDrawer} setOpenDrawer={setOpenDrawer} />

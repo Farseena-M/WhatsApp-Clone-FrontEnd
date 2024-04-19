@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ChatFooter from './chatFooter';
 import Msg from './msg';
 import { useGetMessages } from '../../../api/api';
@@ -21,15 +21,25 @@ const Container = styled(Box)`
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
-  console.log('messages:', messages);
+  // console.log('messages:', messages);
+  const lastMessageRef = useRef()
+
+  useEffect(() => {
+    setTimeout(() => {
+      lastMessageRef.current?.scrollIntoView({ bahavior: 'smooth' })
+    }, 100);
+  }, [messages])
 
   return (
     <Wrapper>
       <Component>
         <Container>
-          {!loading && messages.length > 0 && messages.map((message) => (
-            <Msg key={message._id} message={message}/>
-          ))}
+          {!loading && messages.length > 0 &&
+            messages.map((message) => (
+              <div key={message._id} ref={lastMessageRef}>
+                <Msg message={message} />
+              </div>
+            ))}
           {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
           {!loading && messages.length === 0 && (
             <p className='text-center' style={{ color: '#4A4A4A', fontSize: '16px' }}>Send a message to start conversation</p>

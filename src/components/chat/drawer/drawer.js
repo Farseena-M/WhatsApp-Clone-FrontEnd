@@ -1,7 +1,7 @@
 import { Drawer, Typography, Box ,styled} from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import React from 'react'
-import Profile from './profile';
+import React, { useState } from 'react'
+import ProfileEdit from './profile';
 
 const Header = styled(Box)`
 background:#008069;
@@ -46,7 +46,7 @@ const handleClose = () =>{
     <Text style={{padding:'15px',position:'relative',left:'20px'}}>Profile</Text>
     </Header>
     <Component>
-     <Profile />
+     <ProfileEdit />
     </Component>
     </Drawer>
   )

@@ -3,6 +3,7 @@ import { Box, AppBar, Toolbar, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Axios, userContext } from '../App'
 import { toast } from 'react-toastify'
+import { useAuthContext } from '../AccountContext/accountContext'
 
 const Component = styled(Box)`
 height:100vh;
@@ -18,6 +19,7 @@ box-shadow:none;
 
 const SignUp = () => {
   const { user, setUser, setError } = useContext(userContext)
+  const { setAuthUser } = useAuthContext()
   const Nvgt = useNavigate()
   const refName = useRef()
   const refUserName = useRef()
@@ -92,10 +94,12 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-        
+
       });
       const data = res.data
       // console.log(data);
+      localStorage.setItem('chat-user', JSON.stringify(data))
+      setAuthUser(data)
       toast.success(`Successfully Registered`);
       Nvgt('/signin');
     } catch (err) {

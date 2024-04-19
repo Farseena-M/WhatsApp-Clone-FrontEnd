@@ -1,6 +1,7 @@
 import { Box, Typography, styled } from '@mui/material';
 import React from 'react';
 import { formatDate } from '../../../api/messageTime';
+import { useAuthContext } from '../../../AccountContext/accountContext';
 
 const MessageContainer = styled(Box)`
   max-width: 60%;
@@ -10,8 +11,8 @@ const MessageContainer = styled(Box)`
   border-radius: 10px;
   word-break: break-word;
   margin-top: 3px;
-  background: ${(props) => (props.own ? '#dcf8c6' : '#FFFFFF')};
-  margin-left: ${(props) => (props.own ? 'auto' : 'initial')};
+  background: ${({ own }) => (own ? '#dcf8c6' : '#FFFFFF')};
+  margin-left: ${({ own }) => (own ? 'auto' : 'initial')};
 `;
 
 const Text = styled(Typography)`
@@ -26,9 +27,10 @@ const Time = styled(Typography)`
   word-break: keep-all;
   margin-top: auto;
 `;
-const Msg = ({ message}) => {
-  const userId = localStorage.getItem('userId');
-  const fromMe = message.sender === userId;
+
+const Msg = ({ message }) => {
+  const {authUser} =useAuthContext()
+  const fromMe = message.sender === authUser._id;
 
   return (
     <MessageContainer own={fromMe}>

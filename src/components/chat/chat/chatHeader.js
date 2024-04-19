@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Box, Typography, styled } from '@mui/material'
-import { Search, MoreVert } from '@mui/icons-material'
 import VideocamIcon from '@mui/icons-material/Videocam';
 import { useConversation } from '../../../api/zustand';
 
@@ -30,7 +29,7 @@ margin-left:auto;
 & : first-child{
     padding: 2px 2px;
     font-size:30px;
-    margin-right:8px;
+    margin-right:20px;
     margin-top:3px;
   }
 `
@@ -53,8 +52,6 @@ const ChatHeader = () => {
       </Box>
       <RightContainer>
         <VideocamIcon />
-        <Search />
-        <MoreVert />
       </RightContainer>
     </Header>
   )
