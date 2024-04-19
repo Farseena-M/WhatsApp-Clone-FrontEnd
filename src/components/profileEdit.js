@@ -1,6 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, {useState } from 'react'
 import { Dialog, Box, styled, AppBar, Toolbar, Button, TextField } from '@mui/material'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthContext } from '../AccountContext/accountContext';
+import { Axios } from '../App';
 
 const Component = styled(Box)`
 height:100vh;
@@ -32,18 +34,41 @@ const Image = styled('img')({
 
 const ProfileEdit = () => {
     const Nvgt = useNavigate()
-    const inputRef = useRef(null)
-    const [image, setImage] = useState('')
-    const profile = localStorage.getItem('Profile')
-    const userName = localStorage.getItem('UserName')
+    const {id} =useParams()
+    const [newUsername, setNewUsername] = useState('');
+    const [newImage, setNewImage] = useState(null);
+    const {authUser,setAuthUser} = useAuthContext()
 
-    const handleImageClick = () => {
-        inputRef.current.click()
-    }
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        setImage(file)
-    }
+    const handleImageChange = (e) => {
+        setNewImage(e.target.files[0]);
+    };
+    const handleUsernameChange = (e) => {
+        setNewUsername(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
+    
+        try {
+            // Check if newImage and newUsername are not empty
+            if (!newImage || !newUsername) {
+                console.error('Please select an image and enter a username');
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append('username', newUsername);
+            formData.append('image', newImage);
+    
+            const response = await Axios.put(`http://localhost:4000/users/${id}`, formData);
+            setAuthUser(response.data.data);
+            Nvgt('/chat');
+            console.log(response.data.message);
+        } catch (error) {
+            console.error('Error updating user data:', error);
+        }
+    };
+
 
     return (
         <>
@@ -58,14 +83,14 @@ const ProfileEdit = () => {
                     PaperProps={{ sx: dialogStyle }}
                     hideBackdrop={true}
                 >
-                    <div onClick={handleImageClick} className="container-fluid" style={{ position: 'absolute', top: '20%', left: '35%' }}>
-                        {image ? <Image src={URL.createObjectURL(image)} alt='' /> : <Image src={profile} alt='' />}
-                        <input type='file' ref={inputRef} onChange={handleImageChange} style={{ display: 'none' }} />
+                    <div className="container-fluid" style={{ position: 'absolute', top: '20%', left: '35%' }}>
+                     <Image src={authUser.image} alt='' onClick={() => document.getElementById('imageInput').click()}/>
+                        <input id='imageInput' type='file'  onChange={handleImageChange} style={{ display: 'none' }} />
                     </div>
                     <div className="container-fluid" style={{ position: 'absolute', top: '30%', left: '35%' }}>
-                        <TextField id="standard-basic" value={userName} label="Enter Your Name...." variant="standard" style={{ position: 'absolute', top: '100px' }} />
-                        <TextField id="standard-basic"  label="about...." variant="standard" style={{ position: 'absolute', top: '150px' }} />
-                        <Button style={{ position: 'absolute', left: '70px', top: '230px' }} className="bg-success" variant='contained' onClick={() => Nvgt('/chat')}>Save</Button>
+                        <TextField type="text" id="standard-basic" value={newUsername || authUser.username}   label="Enter Your Name...." variant="standard" style={{ position: 'absolute', top: '100px' }} onChange={handleUsernameChange}/>
+                        <TextField id="standard-basic" label="about...." variant="standard" style={{ position: 'absolute', top: '150px' }} />
+                        <Button style={{ position: 'absolute', left: '70px', top: '230px' }} className="bg-success" variant='contained' onClick={handleSubmit}>Save</Button>
                     </div>
                 </Dialog>
             </Component>
@@ -74,3 +99,4 @@ const ProfileEdit = () => {
 }
 
 export default ProfileEdit 
+

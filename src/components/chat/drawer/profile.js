@@ -42,7 +42,7 @@ const ProfileEdit = () => {
     return (
         <>
             <ImageContainer >
-                <Image src={authUser.image} alt='dp' style={{ cursor: 'pointer' }} />
+                <Image src={authUser.image} alt='dp' style={{ cursor: 'pointer' }}  />
             </ImageContainer>
             <BoxWrapper>
                 <Typography>Your name</Typography>

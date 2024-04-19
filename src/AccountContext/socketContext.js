@@ -1,4 +1,5 @@
 // import { createContext, useEffect, useState } from 'react'
+// import {useAuthContext} from './accountContext'
 // import io from 'socket.io-client'
 
 // export const SocketContext = createContext()
@@ -6,10 +7,10 @@
 // export const SocketContextProvider = ({ children }) => {
 //     const [socket, setSocket] = useState(null)
 //     const [onlineUsers, setOnlineUsers] = useState([])
-//     const userId = localStorage.getItem('userId')
+//     const {authUser} = useAuthContext()
 
 //     useEffect(() => {
-//         if (userId) {
+//         if (authUser) {
 //             const socket = io('http://localhost:4000')
 //             setSocket(socket)
 //             return () => socket.close()
@@ -21,7 +22,7 @@
 //         }
 //     })
 //     return (
-//         <SocketContextProvider value={{ socket, setSocket, onlineUsers, setOnlineUsers }}>
+//         <SocketContextProvider value={{ socket, onlineUsers }}>
 //             {children}
 //         </SocketContextProvider>
 //     )
