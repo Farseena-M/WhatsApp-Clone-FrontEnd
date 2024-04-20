@@ -11,7 +11,7 @@ const MenuOption = styled(MenuItem)`
 font-size:14px;
 padding:15px 60px 5px 24px;
 color:#4A4A4A;
-`
+`;
 
 function HeaderMenu({ setOpenDrawer }) {
     const Nvgt = useNavigate()

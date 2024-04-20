@@ -10,7 +10,7 @@ height:55px;
 background:#ededed;
 padding:8px 16px;
 display:flex;
-`
+`;
 const Wrapper = styled(Box)`
 margin-left:auto;
 & > *:first-of-type {
@@ -18,7 +18,7 @@ margin-left:auto;
   margin-right:8px;
   margin-top:3px
 }
-`
+`;
 const Image = styled('img')({
   height: 40,
   width: 40,

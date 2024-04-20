@@ -6,13 +6,12 @@ import { useNavigate } from 'react-router-dom'
 const Component = styled(Box)`
 height:100vh;
 background-color:#DCDCDC;
-
-`
+`;
 const Header = styled(AppBar)`
 height:220px;
 background-color:#00bfa5;
 box-shadow:none;
-`
+`;
 const dialogStyle = {
   height: '96%',
   marginTop: '12%',
@@ -24,10 +23,10 @@ const dialogStyle = {
 }
 const Compnent = styled(Box)`
 display:flex;
-`
+`;
 const Container = styled(Box)`
 padding:56px 0 56px 56px;
-`
+`;
 const QrCode = styled('img')({
   height: 264,
   width: 264,
@@ -39,7 +38,7 @@ const Title = styled(Typography)`
  font-weight:300;
  font-family:inherit;
  margin-bottom:25px;
- `
+ `;
 const StyledList = styled(List)`
 & > li {
     padding:0;
@@ -48,7 +47,7 @@ const StyledList = styled(List)`
     line-height:28px;
     color:#4a4a4a;
 }
-`
+`;
 const LoginDialog = () => {
   const Nvgt = useNavigate()
   return (

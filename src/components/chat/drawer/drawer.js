@@ -12,14 +12,14 @@ display:flex;
     margin-top:auto;
     font-weight:600;
 }
-`
+`;
 const Text = styled(Typography)`
 font-size:18px;
-`
+`;
 const Component = styled(Box)`
 background:#ededed;
 height:85%;
-`
+`;
 const drawerStyle = {
     left:20,
     top:20,

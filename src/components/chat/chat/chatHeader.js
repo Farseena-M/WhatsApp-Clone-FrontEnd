@@ -9,7 +9,7 @@ background:#ededed;
 padding:8px 16px;
 display:flex;
 alighn-items:center;
-`
+`;
 const Image = styled('img')({
   height: '40px',
   width: '40px',
@@ -18,12 +18,12 @@ const Image = styled('img')({
 })
 const Name = styled(Typography)`
 margin-left:12px !important;
-`
+`;
 const Status = styled(Typography)`
 margin-left:12px !important;
 font-size:12px;
 color:rgb(0,0,0,0.6);
-`
+`;
 const RightContainer = styled(Box)`
 margin-left:auto;
 & : first-child{
@@ -32,7 +32,7 @@ margin-left:auto;
     margin-right:20px;
     margin-top:3px;
   }
-`
+`;
 
 
 const ChatHeader = () => {

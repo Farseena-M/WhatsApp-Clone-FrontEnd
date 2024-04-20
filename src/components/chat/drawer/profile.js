@@ -5,7 +5,7 @@ import {useAuthContext} from '../../../AccountContext/accountContext'
 const ImageContainer = styled(Box)`
     display:flex;
     justify-content:center;
- `
+ `;
 const Image = styled('img')({
     width: 200,
     height: 200,
@@ -25,14 +25,14 @@ box-shadow:0 1px 3px rgba(0,0,0,0.08);
     margin:14px 0;
     color:#4A4A4A;
 }
-`
+`;
 const DescriptionContainer = styled(Box)`
 padding:15px 20px 28px 30px;
 & > p {
     font-size:13px;
     color:#8696a0;
 }
-`
+`;
 
 
 
