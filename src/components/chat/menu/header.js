@@ -27,7 +27,7 @@ const Image = styled('img')({
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
-  const {authUser} = useAuthContext()
+  const {updatedAuthUser} = useAuthContext()
 
   const toggleDrawer = () => {
     setOpenDrawer(true)
@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <>
       <Component>
-        <Image src={authUser.image} alt='dp' onClick={() => toggleDrawer()} style={{ cursor: 'pointer' }} />
+        <Image src={updatedAuthUser.image} alt='dp' onClick={() => toggleDrawer()} style={{ cursor: 'pointer' }} />
         <Wrapper>
           <ChatIcon />
           <HeaderMenu open={openDrawer} setOpenDrawer={setOpenDrawer} />

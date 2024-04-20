@@ -37,23 +37,23 @@ padding:15px 20px 28px 30px;
 
 
 const ProfileEdit = () => {
-    const {authUser} = useAuthContext()
+    const {updatedAuthUser} = useAuthContext()
 
     return (
         <>
             <ImageContainer >
-                <Image src={authUser.image} alt='dp' style={{ cursor: 'pointer' }}  />
+                <Image src={updatedAuthUser.image} alt='dp' style={{ cursor: 'pointer' }}  />
             </ImageContainer>
             <BoxWrapper>
                 <Typography>Your name</Typography>
-                <Typography>{authUser.username}</Typography>
+                <Typography>{updatedAuthUser.username}</Typography>
             </BoxWrapper>
             <DescriptionContainer>
                 <Typography>This is not your username or pin. This name will be visible to your WhatsApp contacts.</Typography>
             </DescriptionContainer>
             <BoxWrapper>
                 <Typography>About</Typography>
-                <Typography>Eat! Sleep! Repeat!</Typography>
+                <Typography>{updatedAuthUser.about}</Typography>
             </BoxWrapper>
         </>
     )

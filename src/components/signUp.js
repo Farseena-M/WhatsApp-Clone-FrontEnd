@@ -22,7 +22,6 @@ const SignUp = () => {
   const { setAuthUser } = useAuthContext()
   const Nvgt = useNavigate()
   const refName = useRef()
-  const refUserName = useRef()
   const refEmail = useRef()
   const refPassword = useRef()
   const refPhone = useRef()
@@ -38,7 +37,6 @@ const SignUp = () => {
     e.preventDefault();
 
     const newRefName = refName.current.value;
-    const newRefUserName = refUserName.current.value;
     const newRefEmail = refEmail.current.value;
     const newRefPassword = refPassword.current.value;
     const newPhone = refPhone.current.value;
@@ -54,7 +52,6 @@ const SignUp = () => {
 
     if (
       newRefName.length === 0 ||
-      newRefUserName.length === 0 ||
       newRefEmail.length === 0 ||
       newRefPassword.length === 0 ||
       newPhone.length === 0
@@ -72,7 +69,6 @@ const SignUp = () => {
 
     const value = {
       name: newRefName,
-      username: newRefUserName,
       email: newRefEmail,
       password: newRefPassword,
       phone: newPhone
@@ -85,7 +81,6 @@ const SignUp = () => {
       const formData = new FormData();
       formData.append('image', image);
       formData.append('name', newRefName);
-      formData.append('username', newRefUserName);
       formData.append('email', newRefEmail);
       formData.append('password', newRefPassword);
       formData.append('phone', newPhone);
@@ -117,10 +112,6 @@ const SignUp = () => {
               <div className="mb-2 mt-3">
                 <label htmlFor="exampleInputname" className="form-label" style={{ color: 'black' }}>Name</label>
                 <input type="name" className="form-control" id="exampleInputname" aria-describedby="emailHelp" placeholder='Enter your name..' ref={refName} />
-              </div>
-              <div className="mb-2 mt-2">
-                <label htmlFor="exampleInputUsername" className="form-label" style={{ color: 'black' }}>User Name</label>
-                <input type="username" className="form-control" id="exampleInputUsername" aria-describedby="emailHelp" placeholder='Enter your username..' ref={refUserName} />
               </div>
               <div className="mb-2 mt-2">
                 <label htmlFor="exampleInputEmail" className="form-label" style={{ color: 'black' }}>Email</label>
