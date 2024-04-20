@@ -4,41 +4,43 @@ import { Box, InputBase, styled } from '@mui/material';
 import { EmojiEmotionsOutlined, AttachFile, Mic } from '@mui/icons-material';
 import SendIcon from '@mui/icons-material/Send';
 
+
 const Container = styled(Box)`
-  height:55px;
-  background:#ededed;
-  display:flex;
-  width:100%;
-  align-items:center;
-  padding:0 15px;
+  height: 55px;
+  background: #ededed;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0 15px;
   & > * {
-    margin:5px;
-    color:#919191;
-    cursor:pointer;
+    margin: 5px;
+    color: #919191;
+    cursor: pointer;
   }
 `;
 
 const Search = styled(Box)`
-  background-color:#FFFFFF;
-  border-radius:18px;
-  width:calc(100% - 100px);
+  background-color: #ffffff;
+  border-radius: 18px;
+  width: calc(100% - 100px);
 `;
 
 const InputField = styled(InputBase)`
-  width:100%;
-  padding:20px;
-  height:20px;
-  padding-left:25px;
-  font-size:14px;
+  width: 100%;
+  padding: 20px;
+  height: 20px;
+  padding-left: 25px;
+  font-size: 14px;
 `;
 
 const Clip = styled(AttachFile)`
-  transform:rotate(40deg)
+  transform: rotate(40deg);
 `;
 
 const ChatFooter = () => {
-  const [message, setMessage] = useState('');
+  const [message,setMessage] = useState('');
   const { loading, sendMessages } = useSendMessages();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,14 +55,14 @@ const ChatFooter = () => {
       <Clip />
       <Search>
         <InputField
-          placeholder='Type a message'
+          placeholder="Type a message"
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
       </Search>
       <Mic />
-      <button type='submit' onClick={handleSubmit} style={{ border: 'none' }}>
-        {loading ? <div className='loading loading-spinner'></div> : <SendIcon />}
+      <button type="submit" onClick={handleSubmit} style={{ border: 'none' }}>
+        {loading ? <div className="loading loading-spinner"></div> : <SendIcon />}
       </button>
     </Container>
   );

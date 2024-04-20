@@ -2,12 +2,12 @@ import { Box, Typography, styled } from '@mui/material';
 import React from 'react';
 import { useConversation } from '../../../api/zustand';
 
-const Component = styled(Box)(({ isSelected }) => ({
+const Component = styled(Box)(({ selected }) => ({
     display: 'flex',
     height: '70px',
     padding: '13px 0',
     cursor: 'pointer',
-    backgroundColor: isSelected ? '#ededed' : '', // Conditionally set background color
+    backgroundColor: selected ? '#ededed' : '', // Conditionally set background color
 }));
 
 const Image = styled('img')({
@@ -20,10 +20,10 @@ const Image = styled('img')({
 
 const Conversation = ({ conversation }) => {
     const { selectedConversation, setSelectedConversation } = useConversation();
-    const isSelected = selectedConversation?._id === conversation._id;
+    const selected = selectedConversation?._id === conversation._id;
 
     return (
-        <Component isSelected={isSelected} onClick={() => setSelectedConversation(conversation)}>
+        <Component selected={selected} onClick={() => setSelectedConversation(conversation)}>
             <Box>
                 <Image src={conversation.image} alt={conversation.name} />
             </Box>

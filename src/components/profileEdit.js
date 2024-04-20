@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import { Dialog, Box, styled, AppBar, Toolbar, Button, TextField } from '@mui/material'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../AccountContext/accountContext';
 import { Axios } from '../App';
 
@@ -34,10 +34,9 @@ const Image = styled('img')({
 
 const ProfileEdit = () => {
     const Nvgt = useNavigate()
-    const {id} =useParams()
     const [newUsername, setNewUsername] = useState('');
     const [newImage, setNewImage] = useState(null);
-    const {authUser,setAuthUser} = useAuthContext()
+    const {authUser,setAuthUser}=useAuthContext()
 
     const handleImageChange = (e) => {
         setNewImage(e.target.files[0]);
@@ -60,10 +59,27 @@ const ProfileEdit = () => {
             formData.append('username', newUsername);
             formData.append('image', newImage);
     
-            const response = await Axios.put(`http://localhost:4000/users/${id}`, formData);
-            setAuthUser(response.data.data);
+            const res = await Axios.put(`http://localhost:4000/users/${authUser._id}`, formData);
+            const userInfoString = localStorage.getItem('chat-user');
+            if (userInfoString) {
+                // Parse the JSON string to an object
+                const chatUser = JSON.parse(userInfoString);
+                
+                // Update the user information
+                chatUser.username = 'newUsername';
+                chatUser.image = 'newImage';
+                // Add more fields to update as needed
+              
+                // Convert the updated user information back to a JSON string
+                const updatedUserInfoString = JSON.stringify(chatUser);
+                
+                // Store the updated user information back to localStorage
+                localStorage.setItem('chatUser', updatedUserInfoString);
+                setAuthUser(res.data.findUser)
+              } else {
+                console.error('User information not found in localStorage');
+              }
             Nvgt('/chat');
-            console.log(response.data.message);
         } catch (error) {
             console.error('Error updating user data:', error);
         }
