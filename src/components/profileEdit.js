@@ -78,8 +78,8 @@ const ProfileEdit = () => {
                     <Toolbar></Toolbar>
                 </Header>
                 <Dialog open={true} PaperProps={{ sx: dialogStyle }} hideBackdrop={true}>
-                    <div className="container-fluid" style={{ position: 'absolute', top: '13%', left: '34%' }}>
-                        <div><h3 style={{ padding: '10px', color: 'darkgreen', fontFamily: 'serif' ,fontSize:'35px'}}>Update Profile</h3></div>
+                    <div className="container-fluid" style={{ position: 'absolute', top: '13%', left: '30%' }}>
+                        <div><h3 style={{ padding: '10px', color: 'darkgreen', fontFamily: 'serif' ,fontSize:'35px'}}>Update Your Profile</h3></div>
                         <div style={{ textAlign: 'center', padding: '15px' }}>
                         </div></div>
                     <div className="container-fluid" style={{ position: 'absolute', top: '20%', left: '35%' }}>
@@ -89,7 +89,7 @@ const ProfileEdit = () => {
                     </div>
                     <div className="container-fluid" style={{ position: 'absolute', top: '30%', left: '35%' }}>
                         {/* Username input */}
-                        <TextField type="text" value={newUsername || authUser.username} onChange={handleUsernameChange} label="Enter Your Name...." variant="standard" style={{ position: 'absolute', top: '100px' }} />
+                        <TextField type="text" value={newUsername} onChange={handleUsernameChange} label="Enter Your Name...." variant="standard" style={{ position: 'absolute', top: '100px' }} />
                         {/* About input */}
                         <TextField type="text" value={about} onChange={handleAboutChange} label="About...." variant="standard" style={{ position: 'absolute', top: '150px' }} />
                         {/* Save button */}

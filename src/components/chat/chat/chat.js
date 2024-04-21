@@ -2,6 +2,7 @@ import { Box, Typography ,styled ,Divider} from '@mui/material'
 import React from 'react'
 import EmptyChat from '../../assets/EmptyChat.png'
 
+
 const Component = styled(Box)`
 background:#f8f9fa;
 padding:30px 0;
