@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import ChatFooter from './chatFooter';
 import Msg from './msg';
 import { useGetMessages } from '../../../api/api';
+import useListenMessages from '../../../api/massageSocket';
 
 const Wrapper = styled(Box)`
   background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
@@ -21,6 +22,7 @@ const Container = styled(Box)`
 const Messages = () => {
   const { messages, loading } = useGetMessages();
   // console.log('messages:', messages);
+  useListenMessages()
   const lastMessageRef = useRef()
 
   useEffect(() => {

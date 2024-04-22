@@ -45,7 +45,6 @@ const ChatFooter = () => {
   const { loading, sendMessages } = useSendMessages();
   const [showEmoji, setShowEmoji] = useState(false)
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) return;

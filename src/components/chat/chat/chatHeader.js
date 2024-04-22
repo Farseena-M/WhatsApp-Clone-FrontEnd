@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Box, Typography, styled } from '@mui/material'
 import VideocamIcon from '@mui/icons-material/Videocam';
-import { useConversation } from '../../../api/zustand';
+import useConversation from '../../../api/zustand';
 
 const Header = styled(Box)`
 height:55px;
@@ -37,6 +37,7 @@ margin-left:auto;
 
 const ChatHeader = () => {
   const { selectedConversation, setSelectedConversation } = useConversation()
+
 
   useEffect(() => {
     //cleanup function (unmounts)

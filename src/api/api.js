@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react"
 import { Axios } from "../App"
-import { useConversation } from "./zustand"
+import useConversation from "./zustand"
 
 const url = 'http://localhost:4000'
 
@@ -78,4 +78,5 @@ export const useGetMessages = () => {
     }, [selectedConversation?._id, setMessages])
     return { messages, loading }
 }
+
 

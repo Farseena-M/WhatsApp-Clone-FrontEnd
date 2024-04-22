@@ -3,7 +3,7 @@ import { Box, styled, AppBar, Toolbar, Dialog } from '@mui/material';
 import Menu from './chat/menu/menu';
 import BlankChat from './chat/chat/chat';
 import ChatBox from './chat/chat/chatBox';
-import { useConversation } from '../api/zustand';
+import useConversation from '../api/zustand';
 
 const Components = styled(Box)`
   display: flex;

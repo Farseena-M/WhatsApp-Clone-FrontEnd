@@ -6,15 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthContextProvider } from './AccountContext/accountContext';
-// import { SocketContextProvider } from './AccountContext/socketContext';
+import { SocketContextProvider } from './AccountContext/socketContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <AuthContextProvider>
-      {/* <SocketContextProvider> */}
+      <SocketContextProvider>
         <App />
-      {/* </SocketContextProvider> */}
+      </SocketContextProvider>
     </AuthContextProvider>
   </BrowserRouter>
 );
