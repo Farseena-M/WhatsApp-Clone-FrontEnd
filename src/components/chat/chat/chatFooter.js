@@ -55,26 +55,24 @@ const ChatFooter = () => {
 
   const addEmoji = (e) => {
     const emg = e.unified.split('_')
+    // console.log(emg);
     const codeArray = []
     emg.forEach((el) => codeArray.push('0x' + el))
     let emoji = String.fromCodePoint(...codeArray)
     setMessage(message + emoji)
   }
 
-
-
-
   return (
     <Container >
       <EmojiEmotionsOutlined onClick={() => setShowEmoji(!showEmoji)} />
-      <div style={{position:'absolute',top: '290px',right:'90'}}>
-      {showEmoji && <Picker data={data}
-        theme={'light'}
-        onEmojiSelect={addEmoji}
-        emojiButtonSize={'28'}
-        emojiSize={'20'}
-        maxFrequentRows={'0'}
-      />}
+      <div style={{ position: 'absolute', top: '290px', right: '90' }}>
+        {showEmoji && <Picker data={data}
+          theme={'light'}
+          onEmojiSelect={addEmoji}
+          emojiButtonSize={'28'}
+          emojiSize={'20'}
+          maxFrequentRows={'0'}
+        />}
       </div>
       <Clip />
       <Search>

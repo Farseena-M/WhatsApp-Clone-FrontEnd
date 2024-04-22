@@ -37,7 +37,7 @@ function HeaderMenu({ setOpenDrawer }) {
                 keepMounted
                 open={Boolean(open)}
                 onClose={handleClose}
-                getcontentanchore1={null}
+                getcontentanchorel={null}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center',
@@ -48,7 +48,7 @@ function HeaderMenu({ setOpenDrawer }) {
                 }}
             >
                 <MenuOption onClick={() => { handleClose(); setOpenDrawer(true); }}>Profile</MenuOption>
-                <MenuOption onClick={()=>Nvgt(`/profile`)}>ProfileEdit</MenuOption>
+                <MenuOption onClick={()=>Nvgt(`/profile`)}>Settings</MenuOption>
                 <MenuOption onClick={logoutUser}>Logout</MenuOption>
             </Menu>
         </>

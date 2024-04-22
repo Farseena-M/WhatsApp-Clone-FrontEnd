@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect,useState } from "react"
 import { Axios } from "../App"
 import { useConversation } from "./zustand"
 
@@ -48,7 +48,6 @@ export const useSendMessages = () => {
             setLoading(false);
         }
     };
-
     return { sendMessages, loading };
 };
 
@@ -60,6 +59,7 @@ export const useSendMessages = () => {
 export const useGetMessages = () => {
     const [loading, setLoading] = useState(false);
     const { messages, setMessages, selectedConversation } = useConversation()
+
     useEffect(() => {
         const getMessages = async () => {
             setLoading(true)
@@ -76,6 +76,6 @@ export const useGetMessages = () => {
         }
         if (selectedConversation?._id) getMessages()
     }, [selectedConversation?._id, setMessages])
-    return { messages, loading  }
+    return { messages, loading }
 }
 

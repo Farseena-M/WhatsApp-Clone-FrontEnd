@@ -31,7 +31,6 @@ const Time = styled(Typography)`
 const Msg = ({ message }) => {
   const {authUser} =useAuthContext()
   const fromMe = message.sender === authUser._id;
-
   return (
     <MessageContainer own={fromMe}>
       <Text>{message.message}</Text>

@@ -39,6 +39,7 @@ const dialogStyle = {
 
 const ChatDialog = () => {
   const { selectedConversation } = useConversation();
+  
 
   return (
     <Component>
