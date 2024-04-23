@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import { userContext } from '../../../App';
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../../../AccountContext/accountContext';
 
 
 const MenuOption = styled(MenuItem)`
@@ -15,7 +16,8 @@ color:#4A4A4A;
 
 function HeaderMenu({ setOpenDrawer }) {
     const Nvgt = useNavigate()
-    const { setUser, open, setOpen } = useContext(userContext)
+    const { open, setOpen } = useContext(userContext)
+    const {setAuthUser} = useAuthContext()
     const handleClose = () => {
         setOpen(false)
     }
@@ -25,9 +27,10 @@ function HeaderMenu({ setOpenDrawer }) {
 
     const logoutUser = () => {
         localStorage.clear()
-        setUser(null)
+        setAuthUser(null)
         toast.success('Logout Success')
         Nvgt('/')
+        window.location.reload()
     }
     return (
         <>

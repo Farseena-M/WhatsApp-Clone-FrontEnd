@@ -14,7 +14,7 @@ padding:0 200px;
 `;
 const Image = styled('img')({
 width:550,
-marginTop:100
+marginTop:100,
 })
 const Title = styled(Typography)`
 font-size:32px;

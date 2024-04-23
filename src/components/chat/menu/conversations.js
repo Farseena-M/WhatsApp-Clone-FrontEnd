@@ -34,20 +34,20 @@ const Conversations = () => {
 
   return (
     <Component>
-
-      <div>
-        {searchUser.map((conversation) => (
-          authUser.name !== conversation.name &&
-          <div key={conversation._id} >
+    {searchUser.length === 0 && !loading ? (
+      <div>No conversations found.</div>
+    ) : (
+      searchUser.map((conversation) => (
+        authUser.name !== conversation.name && (
+          <div key={conversation._id}>
             <Conversation conversation={conversation} />
             <StyledDivider />
           </div>
-        ))}
-
-        {loading ? <span className='loading loading-spinner mx-auto'></span> : null}
-      </div>
-
-    </Component>
+        )
+      ))
+    )}
+    {loading && <span className='loading loading-spinner mx-auto'></span>}
+  </Component>
   );
 };
 

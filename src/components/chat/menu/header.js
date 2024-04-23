@@ -30,7 +30,7 @@ const Header = () => {
   const {updatedAuthUser} = useAuthContext()
 
   const toggleDrawer = () => {
-    setOpenDrawer(true)
+    setOpenDrawer(!openDrawer)
   }
 
 

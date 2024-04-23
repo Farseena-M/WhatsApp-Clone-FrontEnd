@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, styled, AppBar, Toolbar, Dialog } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, styled, AppBar, Toolbar, Dialog, CircularProgress } from '@mui/material';
 import Menu from './chat/menu/menu';
 import BlankChat from './chat/chat/chat';
 import ChatBox from './chat/chat/chatBox';
@@ -39,7 +39,12 @@ const dialogStyle = {
 
 const ChatDialog = () => {
   const { selectedConversation } = useConversation();
-  
+  const [loading, setLoading] = useState(true); // Step 1: Introduce Loading State
+
+  // Simulating loading effect
+  setTimeout(() => {
+    setLoading(false); // Step 2: Set Loading State to false when rendering is complete
+  }, 1000);
 
   return (
     <Component>
@@ -52,14 +57,21 @@ const ChatDialog = () => {
         hideBackdrop={true}
         maxWidth={'md'}
       >
-        <Components>
-          <LeftComponent>
-            <Menu />
-          </LeftComponent>
-          <RightComponent>
-            {!selectedConversation ? <BlankChat /> : <ChatBox />}
-          </RightComponent>
-        </Components>
+        {/* Step 3: Conditional Rendering based on Loading State */}
+        {loading ? (
+          <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Components>
+            <LeftComponent>
+              <Menu />
+            </LeftComponent>
+            <RightComponent>
+              {!selectedConversation ? <BlankChat /> : <ChatBox />}
+            </RightComponent>
+          </Components>
+        )}
       </Dialog>
     </Component>
   );

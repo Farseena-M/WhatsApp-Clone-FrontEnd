@@ -1,6 +1,6 @@
 import { Box, Typography, styled } from '@mui/material'
 import React from 'react'
-import {useAuthContext} from '../../../AccountContext/accountContext'
+import { useAuthContext } from '../../../AccountContext/accountContext'
 
 const ImageContainer = styled(Box)`
     display:flex;
@@ -37,19 +37,21 @@ padding:15px 20px 28px 30px;
 
 
 const ProfileEdit = () => {
-    const {updatedAuthUser} = useAuthContext()
+    const { updatedAuthUser } = useAuthContext()
 
     return (
         <>
             <ImageContainer >
-                <Image src={updatedAuthUser.image} alt='dp' style={{ cursor: 'pointer' }}  />
+                <Image src={updatedAuthUser.image} alt='dp' style={{ cursor: 'pointer' }} />
             </ImageContainer>
             <BoxWrapper>
                 <Typography>Your name</Typography>
                 <Typography>{updatedAuthUser.username}</Typography>
             </BoxWrapper>
             <DescriptionContainer>
-                <Typography>This is not your username or pin. This name will be visible to your WhatsApp contacts.</Typography>
+                <Typography>
+                    This is not your username or pin. This name will be visible to your WhatsApp contacts.
+                </Typography>
             </DescriptionContainer>
             <BoxWrapper>
                 <Typography>About</Typography>
