@@ -18,7 +18,7 @@ box-shadow:none;
 
 const SignUp = () => {
   const { user, setUser, setError } = useContext(userContext)
-  const { setAuthUser } = useAuthContext()
+  // const { setAuthUser } = useAuthContext()
   const Nvgt = useNavigate()
   const refName = useRef()
   const refEmail = useRef()
@@ -92,8 +92,8 @@ const SignUp = () => {
       });
       const data = res.data
       // console.log(data);
-      localStorage.setItem('chat-user', JSON.stringify(data))
-      setAuthUser(data)
+      // localStorage.setItem('chat-user', JSON.stringify(data))
+      // setAuthUser(data)
       toast.success(`Successfully Registered`);
       Nvgt('/signin');
     } catch (err) {

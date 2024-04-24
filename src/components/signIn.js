@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Box, AppBar, Toolbar, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './signIn.css';
-import {Axios, userContext } from '../App';
+import { Axios, userContext } from '../App';
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../AccountContext/accountContext';
 
@@ -21,7 +21,7 @@ const SignIn = () => {
   const { setAuthUser } = useAuthContext();
   const reffEmail = useRef();
   const reffPassword = useRef();
-  
+
   // Step 1: Introduce Loading State
   const [loading, setLoading] = useState(false);
 
@@ -46,12 +46,12 @@ const SignIn = () => {
       };
 
       const rspns = await Axios.post('http://localhost:4000/users/auth/login', data);
-      console.log(rspns); 
+      console.log(rspns);
       const userToken = rspns.data.token;
       localStorage.setItem('userToken', userToken);
-      const Data = rspns.data.findUser;
-      localStorage.setItem('chat-user', JSON.stringify(Data));
-      setAuthUser(Data);
+      const Data = rspns.data.findUser
+      localStorage.setItem('chat-user', JSON.stringify(Data))
+      setAuthUser(Data)
       toast.success("User login Successfully");
       Nvgt('/profile');
     } catch (err) {
@@ -61,7 +61,6 @@ const SignIn = () => {
       setLoading(false); // Step 2: Set Loading State to false
     }
   };
-
   return (
     <Component>
       <Header>
