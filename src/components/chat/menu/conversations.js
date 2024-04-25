@@ -19,7 +19,7 @@ const StyledDivider = styled(Divider)`
 const Conversations = () => {
   const { search } = useContext(userContext);
   const { conversations, loading } = useGetConversations()
-  const {authUser} = useAuthContext()
+  const { authUser } = useAuthContext()
 
   const searchUser = conversations.filter((val) => {
     if (search === '') {
@@ -34,20 +34,20 @@ const Conversations = () => {
 
   return (
     <Component>
-    {searchUser.length === 0 && !loading ? (
-      <div>No conversations found.</div>
-    ) : (
-      searchUser.map((conversation) => (
-        authUser.name !== conversation.name && (
-          <div key={conversation._id}>
-            <Conversation conversation={conversation} />
-            <StyledDivider />
-          </div>
-        )
-      ))
-    )}
-    {loading && <span className='loading loading-spinner mx-auto'></span>}
-  </Component>
+      {searchUser.length === 0 && !loading ? (
+        <div style={{ fontFamily: 'inherit', textAlign: 'center', color: '#4A4A4A' }}>No conversations found.</div>
+      ) : (
+        searchUser.map((conversation) => (
+          authUser.name !== conversation.name && (
+            <div key={conversation._id}>
+              <Conversation conversation={conversation} />
+              <StyledDivider />
+            </div>
+          )
+        ))
+      )}
+      {loading && <span className='loading loading-spinner mx-auto'></span>}
+    </Component>
   );
 };
 

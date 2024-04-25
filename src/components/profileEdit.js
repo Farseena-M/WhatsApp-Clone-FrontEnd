@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Dialog, Box, styled, AppBar, Toolbar, Button, TextField, CircularProgress } from '@mui/material';
-import { Axios } from '../App';
 import { useAuthContext } from '../AccountContext/accountContext';
 import { useNavigate } from 'react-router-dom';
 import NoDp from '../components/assets/No Dp.png';
+import axios from 'axios'
 
 const Component = styled(Box)`
   height: 100vh;
@@ -56,7 +56,8 @@ const ProfileEdit = () => {
             formData.append('image', newImage);
             formData.append('about', about);
 
-            const response = await Axios.patch(`http://localhost:4000/users/updateProfile/${authUser._id}`, formData);
+            const response = await axios.patch(`http://localhost:4000/users/updateProfile/${authUser._id}`, formData);
+            
             const updatedUser = { ...authUser, ...response.data.user };
             localStorage.setItem('user', JSON.stringify(updatedUser));
             setLoading(false);

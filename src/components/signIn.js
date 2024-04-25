@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Box, AppBar, Toolbar, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './signIn.css';
-import { Axios, userContext } from '../App';
+import { userContext } from '../App';
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../AccountContext/accountContext';
 
@@ -10,11 +10,13 @@ const Component = styled(Box)`
   height: 100vh;
   background-color: #DCDCDC;
 `;
+
 const Header = styled(AppBar)`
   height: 220px;
   background-color: #00bfa5;
   box-shadow: none;
 `;
+
 const SignIn = () => {
   const Nvgt = useNavigate();
   const { setError } = useContext(userContext);
@@ -40,18 +42,25 @@ const SignIn = () => {
     }
 
     try {
-      const data = {
+      const Data = {
         email: newLreffEmail,
         password: newLreffPassword
       };
 
-      const rspns = await Axios.post('http://localhost:4000/users/auth/login', data);
-      console.log(rspns);
-      const userToken = rspns.data.token;
-      localStorage.setItem('userToken', userToken);
-      const Data = rspns.data.findUser
-      localStorage.setItem('chat-user', JSON.stringify(Data))
-      setAuthUser(Data)
+      const res = await fetch("http://localhost:4000/users/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Data),
+      });
+
+      const data = await res.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      const userToken = data.token
+      localStorage.setItem('userToken',userToken)
+      localStorage.setItem("chat-user", JSON.stringify(data));
+      setAuthUser(data);
       toast.success("User login Successfully");
       Nvgt('/chat');
     } catch (err) {
@@ -61,11 +70,12 @@ const SignIn = () => {
       setLoading(false); // Step 2: Set Loading State to false
     }
   };
+
   return (
     <Component>
       <Header>
         <Toolbar>
-          <div className="container-fluid" style={{ position: 'relative', top: '200px', }}>
+          <div className="container-fluid" style={{ position: 'relative', top: '200px' }}>
             <form className="mx-auto">
               <h4 className="text-center" style={{ color: 'black' }}>Login</h4>
               <div className="mb-3 mt-5">
@@ -83,7 +93,7 @@ const SignIn = () => {
               ) : (
                 <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={hndlClick}>Login</button>
               )}
-              <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={() => Nvgt('/signup')}>SignUp</button>
+              <button type="button" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={() => Nvgt('/signup')}>SignUp</button>
             </form>
           </div>
         </Toolbar>
