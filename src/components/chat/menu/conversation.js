@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import useConversation from '../../../api/zustand';
 
 const Component = styled(Box)(({ selected }) => ({

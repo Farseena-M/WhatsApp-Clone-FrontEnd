@@ -3,6 +3,7 @@ import { Dialog, Box, styled, AppBar, Toolbar, Button, TextField, CircularProgre
 import { Axios } from '../App';
 import { useAuthContext } from '../AccountContext/accountContext';
 import { useNavigate } from 'react-router-dom';
+import NoDp from '../components/assets/No Dp.png';
 
 const Component = styled(Box)`
   height: 100vh;
@@ -31,7 +32,7 @@ const ProfileEdit = () => {
     const [newUsername, setNewUsername] = useState('');
     const [newImage, setNewImage] = useState('');
     const [about, setAbout] = useState('');
-    const [loading, setLoading] = useState(false); // Step 1: Introduce Loading State
+    const [loading, setLoading] = useState(false);
 
     const handleImageChange = (e) => {
         setNewImage(e.target.files[0]);
@@ -41,14 +42,13 @@ const ProfileEdit = () => {
         setNewUsername(e.target.value);
     };
 
-
     const handleAboutChange = (e) => {
         setAbout(e.target.value);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Step 2: Set Loading State to true
+        setLoading(true);
 
         try {
             const formData = new FormData();
@@ -59,12 +59,12 @@ const ProfileEdit = () => {
             const response = await Axios.patch(`http://localhost:4000/users/updateProfile/${authUser._id}`, formData);
             const updatedUser = { ...authUser, ...response.data.user };
             localStorage.setItem('user', JSON.stringify(updatedUser));
-            setLoading(false); // Step 2: Set Loading State to false
-            Nvgt('/chat')
-            window.location.reload()
+            setLoading(false);
+            Nvgt('/chat');
+            window.location.reload();
         } catch (error) {
             console.error('Error updating profile:', error.response.data);
-            setLoading(false); // Step 2: Set Loading State to false
+            setLoading(false);
         }
     };
 
@@ -78,16 +78,17 @@ const ProfileEdit = () => {
                     <div className="container-fluid" style={{ position: 'absolute', top: '13%', left: '30%' }}>
                         <div><h3 style={{ padding: '10px', color: 'darkgreen', fontFamily: 'serif', fontSize: '35px' }}>Update Your Profile</h3></div>
                         <div style={{ textAlign: 'center', padding: '15px' }}>
-                        </div></div>
+                        </div>
+                    </div>
                     <div className="container-fluid" style={{ position: 'absolute', top: '20%', left: '35%' }}>
                         <input id="imageInput" type="file" onChange={handleImageChange} style={{ display: 'none' }} />
-                        <img src={newImage ? URL.createObjectURL(newImage) : authUser.image} alt="" style={{ width: 200, height: 200, borderRadius: '50%', padding: '25px 0', cursor: 'pointer' }} onClick={() => document.getElementById('imageInput').click()} />
+                        <img src={newImage ? URL.createObjectURL(newImage) : NoDp} alt="Profile" style={{ width: 200, height: 200, borderRadius: '50%', padding: '25px 0', cursor: 'pointer' }} onClick={() => document.getElementById('imageInput').click()} />
                     </div>
                     <div className="container-fluid" style={{ position: 'absolute', top: '30%', left: '35%' }}>
                         <TextField type="text" value={newUsername} onChange={handleUsernameChange} label="Enter Your Name...." variant="standard" style={{ position: 'absolute', top: '100px' }} />
                         <TextField type="text" value={about} onChange={handleAboutChange} label="About...." variant="standard" style={{ position: 'absolute', top: '150px' }} />
                         {loading ? (
-                            <CircularProgress color="secondary" style={{ position: 'absolute', left: '70px', top: '230px' }} /> // Step 3: Conditional Rendering based on Loading State
+                            <CircularProgress color="secondary" style={{ position: 'absolute', left: '70px', top: '230px' }} />
                         ) : (
                             <Button style={{ position: 'absolute', left: '70px', top: '230px' }} className="bg-success" variant="contained" onClick={handleSubmit}>Save</Button>
                         )}

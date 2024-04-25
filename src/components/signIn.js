@@ -53,7 +53,7 @@ const SignIn = () => {
       localStorage.setItem('chat-user', JSON.stringify(Data))
       setAuthUser(Data)
       toast.success("User login Successfully");
-      Nvgt('/profile');
+      Nvgt('/chat');
     } catch (err) {
       console.error(err);
       toast.error(err.message || 'An error occurred while logging in.');

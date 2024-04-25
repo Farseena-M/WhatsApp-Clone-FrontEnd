@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuthContext } from '../../../AccountContext/accountContext'
 
 const ImageContainer = styled(Box)`
@@ -37,16 +37,30 @@ padding:15px 20px 28px 30px;
 
 
 const ProfileEdit = () => {
-    const { updatedAuthUser } = useAuthContext()
+    const { updatedAuthUser, authUser } = useAuthContext();
+
+    useEffect(() => {
+        console.log('authUser:', authUser);
+        console.log('updatedAuthUser:', updatedAuthUser);
+    }, [authUser, updatedAuthUser]);
+
+    // Check if updatedAuthUser exists and has the image property
+    const userImage = updatedAuthUser && updatedAuthUser.image ? updatedAuthUser.image : (authUser ? authUser.image : null);
+
+    // console.log('userImage:', userImage);
+
+    // Check if updatedAuthUser and authUser are not null before accessing their properties
+    const username = updatedAuthUser && updatedAuthUser.username ? updatedAuthUser.username : (authUser ? authUser.username : '');
+    const about = updatedAuthUser && updatedAuthUser.about ? updatedAuthUser.about : (authUser ? authUser.about : '');
 
     return (
         <>
             <ImageContainer >
-                <Image src={updatedAuthUser.image} alt='dp' style={{ cursor: 'pointer' }} />
+                <Image src={userImage} alt='dp' style={{ cursor: 'pointer' }} />
             </ImageContainer>
             <BoxWrapper>
                 <Typography>Your name</Typography>
-                <Typography>{updatedAuthUser.username}</Typography>
+                <Typography>{username}</Typography>
             </BoxWrapper>
             <DescriptionContainer>
                 <Typography>
@@ -55,7 +69,7 @@ const ProfileEdit = () => {
             </DescriptionContainer>
             <BoxWrapper>
                 <Typography>About</Typography>
-                <Typography>{updatedAuthUser.about}</Typography>
+                <Typography>{about}</Typography>
             </BoxWrapper>
         </>
     )
