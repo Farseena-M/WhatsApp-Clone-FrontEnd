@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useSendMessages } from '../../../api/api';
 import { Box, InputBase, styled } from '@mui/material';
 import { EmojiEmotionsOutlined, AttachFile } from '@mui/icons-material';
 import SendIcon from '@mui/icons-material/Send';
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
+import { useSendMessages } from '../../../api/api';
 
 
 const Container = styled(Box)`
