@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import Conversation from './conversation';
 import { Box, Divider, styled } from '@mui/material';
 import { userContext } from '../../../App';
@@ -21,6 +21,7 @@ const Conversations = () => {
   const { conversations, loading } = useGetConversations()
   const { authUser } = useAuthContext()
 
+
   const searchUser = conversations.filter((val) => {
     if (search === '') {
       return val;
@@ -30,7 +31,7 @@ const Conversations = () => {
       return '';
     }
   })
-
+console.log(searchUser);
 
   return (
     <Component>

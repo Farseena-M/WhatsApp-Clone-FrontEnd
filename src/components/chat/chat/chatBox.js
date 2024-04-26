@@ -4,7 +4,6 @@ import ChatHeader from './chatHeader'
 import Messages from './messages'
 
 
-
 const ChatBox = () => {
   
   return (

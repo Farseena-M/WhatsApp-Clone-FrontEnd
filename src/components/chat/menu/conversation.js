@@ -25,7 +25,7 @@ const Conversation = ({ conversation }) => {
     return (
         <Component selected={selected} onClick={() => setSelectedConversation(conversation)}>
             <Box>
-            {conversation.image && <Image src={conversation.image} alt={conversation.name} />}    </Box>
+            {conversation.image && <Image src={conversation.image} alt={conversation.name} />}            </Box>
             <Box>
                 <Box>
                     <Typography style={{ fontFamily: 'inherit', padding: '10px 10px' }}>
