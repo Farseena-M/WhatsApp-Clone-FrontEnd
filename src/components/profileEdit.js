@@ -70,7 +70,6 @@ const ProfileEdit = () => {
     };
 
     return (
-        <>
             <Component>
                 <Header>
                     <Toolbar></Toolbar>
@@ -96,7 +95,6 @@ const ProfileEdit = () => {
                     </div>
                 </Dialog>
             </Component>
-        </>
     );
 };
 

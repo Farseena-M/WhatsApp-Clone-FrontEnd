@@ -51,7 +51,6 @@ const StyledList = styled(List)`
 const LoginDialog = () => {
   const Nvgt = useNavigate()
   return (
-    <div>
       <Component>
         <Header>
           <Toolbar>
@@ -79,7 +78,6 @@ const LoginDialog = () => {
           <Button style={{ height: '30px', width: '250px', position: 'relative', left: '660px', bottom: '160px', border: 'none', cursor: 'pointer', color: 'white', backgroundColor: 'white', padding: '3px' }} onClick={() => Nvgt('/signin')}>Login</Button>
         </Dialog>
       </Component>
-    </div>
   )
 }
 

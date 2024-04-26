@@ -136,7 +136,6 @@ const SignUp = () => {
         </Toolbar>
       </Header>
     </Component>
-
   )
 }
 

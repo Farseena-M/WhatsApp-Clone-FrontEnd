@@ -54,7 +54,7 @@ function HeaderMenu({ setOpenDrawer }) {
                 <MenuOption onClick={()=>Nvgt(`/profile`)}>Settings</MenuOption>
                 <MenuOption onClick={logoutUser}>Logout</MenuOption>
             </Menu>
-        </>
+       </>
     )
 }
 
