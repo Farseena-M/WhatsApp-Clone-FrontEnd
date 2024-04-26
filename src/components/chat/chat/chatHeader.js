@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Box, Typography, styled } from '@mui/material'
 import VideocamIcon from '@mui/icons-material/Videocam';
 import useConversation from '../../../api/zustand';
+import { useSocketContext } from '../../../AccountContext/socketContext'
 
 const Header = styled(Box)`
 height:55px;
@@ -37,7 +38,8 @@ margin-left:auto;
 
 const ChatHeader = () => {
   const { selectedConversation, setSelectedConversation } = useConversation()
-
+  const { onlineUsers } = useSocketContext()
+  const isOnline = onlineUsers.includes(selectedConversation._id)
 
   useEffect(() => {
     //cleanup function (unmounts)
@@ -49,7 +51,7 @@ const ChatHeader = () => {
       <Image src={selectedConversation.image} alt='dp' />
       <Box>
         <Name>{selectedConversation.name}</Name>
-        <Status>Offline</Status>
+        <Status>{isOnline ? 'Online' : 'Offline'}</Status>
       </Box>
       <RightContainer>
         <VideocamIcon />

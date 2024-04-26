@@ -31,7 +31,6 @@ const Conversations = () => {
       return '';
     }
   })
-console.log(searchUser);
 
   return (
     <Component>
