@@ -1,82 +1,209 @@
-import { useEffect, useState } from "react"
-import { Axios } from "../App"
-import useConversation from "./zustand"
+// import { useEffect, useState } from "react"
+// import { Axios } from "../App"
+// import useConversation from "./zustand"
 
-const url = 'http://localhost:4000'
+// const url = 'http://localhost:4000'
 
-export const useGetConversations = () => {
-    const [loading, setLoading] = useState(false)
-    const [conversations, setConversations] = useState([])
-    useEffect(() => {
-        const getConversations = async () => {
-            setLoading(true)
-            try {
-                const res = await Axios.get(`${url}/users/all`)
-                const data = res.data.data
-                setConversations(data)
-            } catch (err) {
-                console.log(err.message);
-            } finally {
-                setLoading(false)
-            }
+// export const useGetConversations = () => {
+//     const [loading, setLoading] = useState(false)
+//     const [conversations, setConversations] = useState([])
+//     useEffect(() => {
+//         const getConversations = async () => {
+//             setLoading(true)
+//             try {
+//                 const res = await Axios.get(`${url}/users/all`)
+//                 const data = res.data.data
+//                 setConversations(data)
+//             } catch (err) {
+//                 console.log(err.message);
+//             } finally {
+//                 setLoading(false)
+//             }
+//         }
+//        getConversations()  
+//       }, [])
+//     return { loading, conversations }
+// }
+
+
+
+
+
+
+
+// export const useSendMessages = () => {
+//     const [loading, setLoading] = useState(false);
+//     const { messages, setMessages, selectedConversation } = useConversation();
+
+//     const sendMessages = async (message) => {
+//         setLoading(true);
+//         try {
+//             const res = await Axios.post(`${url}/users/messages/send/${selectedConversation._id}`, { message });
+//             const data = res.data;
+//             if (data.error) throw new Error(data.error);
+//             setMessages([...messages, data]);
+//         } catch (err) {
+//             console.log(err.message);
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
+//     return { sendMessages, loading };
+// };
+
+
+
+
+
+
+// export const useGetMessages = () => {
+//     const [loading, setLoading] = useState(false);
+//     const { messages, setMessages, selectedConversation } = useConversation()
+
+//     useEffect(() => {
+//         const getMessages = async () => {
+//             setLoading(true)
+//             try {
+//                 const res = await Axios.get(`${url}/users/messages/${selectedConversation._id}`)
+//                 const data = res.data
+//                 if (data.error) throw new Error(data.error);
+//                 setMessages(data)
+//             } catch (error) {
+//                 console.log(error.message);
+//             } finally {
+//                 setLoading(false)
+//             }
+//         }
+//         if (selectedConversation?._id) getMessages()
+//     }, [selectedConversation?._id, setMessages])
+//     return { messages, loading }
+// }
+
+
+
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import useConversation from "./zustand";
+
+export const useGetConversation = () => {
+  const [loading, setLoading] = useState(false);
+  const [conversations, setConversations] = useState([]);
+
+  let authorization;
+  if (typeof window !== 'undefined') {
+    authorization = "Bearer " + (localStorage.getItem("userToken") || '');
+  } else {
+    authorization = '';
+  }
+
+  useEffect(() => {
+    const getConversation = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/users/all",
+          {
+            headers: {
+              Authorization: authorization,
+            },
+          }
+        );
+        if (res.status === 200) {
+          setConversations(res.data.data);
         }
-       getConversations()  
-      }, [])
-    return { loading, conversations }
-}
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getConversation();
+  }, [authorization]);
 
-
-
-
+  return { loading, conversations };
+};
 
 
 
 export const useSendMessages = () => {
     const [loading, setLoading] = useState(false);
     const { messages, setMessages, selectedConversation } = useConversation();
-
+  
+    let authorization;
+    if (typeof window !== 'undefined') {
+      authorization = "Bearer " + (localStorage.getItem("userToken") || '');
+    } else {
+      authorization = '';
+    }
+  
     const sendMessages = async (message) => {
-        setLoading(true);
-        try {
-            const res = await Axios.post(`${url}/users/messages/send/${selectedConversation._id}`, { message });
-            const data = res.data;
-            if (data.error) throw new Error(data.error);
-            setMessages([...messages, data]);
-        } catch (err) {
-            console.log(err.message);
-        } finally {
-            setLoading(false);
-        }
+      setLoading(true);
+      try {
+        const res = await fetch(
+          `http://localhost:4000/users/messages/send/${selectedConversation._id}`,
+          {
+            method: "post",
+            headers: {
+              "Content-type": "application/json",
+              Authorization: authorization,
+            },
+            body: JSON.stringify({ message }),
+          }
+        )
+        const data = await res.json()
+        if(data.error) throw new Error(data.error)
+  
+        setMessages([...messages,data]);
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
     };
     return { sendMessages, loading };
-};
+  };
+  
 
-
-
-
-
-
-export const useGetMessages = () => {
+ export const useGetMessages = () => {
     const [loading, setLoading] = useState(false);
-    const { messages, setMessages, selectedConversation } = useConversation()
+    const { messages, setMessages, selectedConversation } = useConversation();
+
+    let authorization;
+    if (typeof window !== 'undefined') {
+      authorization = "Bearer " + (localStorage.getItem("userToken") || '');
+    } else {
+      authorization = '';
+    }
 
     useEffect(() => {
         const getMessages = async () => {
-            setLoading(true)
-            try {
-                const res = await Axios.get(`${url}/users/messages/${selectedConversation._id}`)
-                const data = res.data
-                if (data.error) throw new Error(data.error);
-                setMessages(data)
-            } catch (error) {
-                console.log(error.message);
-            } finally {
-                setLoading(false)
+            if (!selectedConversation || !selectedConversation._id) {
+                return; // Exit early if no selectedConversation or _id
             }
-        }
-        if (selectedConversation?._id) getMessages()
-    }, [selectedConversation?._id, setMessages])
-    return { messages, loading }
-}
 
+            setLoading(true);
+            try {
+                const res = await fetch(`http://localhost:4000/users/messages/${selectedConversation._id}`, {
+                    headers: {
+                        Authorization: authorization,
+                    },
+                });
+                const data = await res.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                setMessages(data);
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getMessages();
+    }, [selectedConversation._id, authorization]); // Include dependencies from useConversation and authorization
+
+    return { messages, loading };
+};
 

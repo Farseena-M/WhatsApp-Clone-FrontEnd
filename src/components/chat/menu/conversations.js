@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Conversation from './conversation';
 import { Box, Divider, styled, Modal, Button, CircularProgress } from '@mui/material';
-import { Axios, userContext } from '../../../App';
+import { userContext } from '../../../App';
 import { useAuthContext } from '../../../AccountContext/accountContext';
-import { useGetConversations } from '../../../api/api';
+import axios from 'axios';
 import useConversation from '../../../api/zustand';
+import { useGetConversation } from '../../../api/api';
 
 const Component = styled(Box)`
   height: 81vh;
@@ -31,7 +32,7 @@ const ConfirmationModal = ({ open, handleClose, handleConfirm }) => {
 
 const Conversations = () => {
   const { search } = useContext(userContext);
-  const { conversations, loading } = useGetConversations();
+  const { conversations, loading } = useGetConversation();
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
   const [selectedContacts, setSelectedContacts] = useState([]);
@@ -50,7 +51,11 @@ const Conversations = () => {
   const handleDeleteContact = async () => {
     try {
       if (selectedConversation && selectedConversation._id) {
-        await Axios.delete(`http://localhost:4000/users/${selectedConversation._id}`);
+        await axios.delete(`http://localhost:4000/users/${selectedConversation._id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('userToken')}` // Include the authorization token in the headers
+          }
+        });
         setSelectedContacts(selectedContacts.filter((id) => id !== selectedConversation._id));
         setConfirmationOpen(false);
       }
@@ -58,6 +63,11 @@ const Conversations = () => {
       console.error('Error deleting contact:', error);
     }
   };
+  useEffect(() => {
+    if (selectedConversation && selectedConversation._id) {
+      console.log('selectedConversation', selectedConversation._id);
+    }
+  }, [selectedConversation]);
 
   const handleConfirmationOpen = () => {
     setConfirmationOpen(true);

@@ -6,17 +6,16 @@ import SignUp from './components/signUp';
 import SignIn from './components/signIn';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import axios from 'axios';
 import ProfileEdit from './components/profileEdit';
 
 export const userContext = createContext();
 
-export const Axios = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:4000/",
-  headers: {
-    Authorization: "Bearer " + (localStorage.getItem("userToken") || '')
-  }
-});
+// export const Axios = axios.create({
+//   baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:4000/",
+//   headers: {
+//     Authorization: "Bearer " + (localStorage.getItem("userToken") || '')
+//   }
+// });
 
 const App = () => {
   const [user, setUser] = useState([]);
