@@ -10,13 +10,6 @@ import ProfileEdit from './components/profileEdit';
 
 export const userContext = createContext();
 
-// export const Axios = axios.create({
-//   baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:4000/",
-//   headers: {
-//     Authorization: "Bearer " + (localStorage.getItem("userToken") || '')
-//   }
-// });
-
 const App = () => {
   const [user, setUser] = useState([]);
   const [login, setLogin] = useState(false);
