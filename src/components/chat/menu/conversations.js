@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Conversation from './conversation';
-import { Box, Divider, styled, Modal, Button } from '@mui/material';
+import { Box, Divider, styled, Modal, Button, CircularProgress } from '@mui/material';
 import { Axios, userContext } from '../../../App';
 import { useAuthContext } from '../../../AccountContext/accountContext';
 import { useGetConversations } from '../../../api/api';
@@ -81,7 +81,7 @@ const Conversations = () => {
           )
         ))
       )}
-      {loading && <span className='loading loading-spinner mx-auto'></span>}
+      {loading && <CircularProgress />}
       <ConfirmationModal open={confirmationOpen} handleClose={handleConfirmationClose} handleConfirm={handleDeleteContact} />
     </Component>
   );

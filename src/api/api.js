@@ -20,8 +20,8 @@ export const useGetConversations = () => {
                 setLoading(false)
             }
         }
-        getConversations()
-    }, [])
+       getConversations()  
+      }, [])
     return { loading, conversations }
 }
 
