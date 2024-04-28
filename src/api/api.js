@@ -86,7 +86,6 @@ export const useSendMessages = () => {
 
 
 
-
 export const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
@@ -123,9 +122,10 @@ export const useGetMessages = () => {
         setLoading(false);
       }
     };
+    
 
-    getMessages();
-  }, [selectedConversation._id, authorization]); // Include dependencies from useConversation and authorization
+    if (selectedConversation?._id) getMessages();
+  }, [selectedConversation._id,setMessages, authorization]);
 
   return { messages, loading };
 };

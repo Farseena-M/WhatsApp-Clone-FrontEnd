@@ -63,11 +63,7 @@ const Conversations = () => {
       console.error('Error deleting contact:', error);
     }
   };
-  useEffect(() => {
-    if (selectedConversation && selectedConversation._id) {
-      console.log('selectedConversation', selectedConversation._id);
-    }
-  }, [selectedConversation]);
+  
 
   const handleConfirmationOpen = () => {
     setConfirmationOpen(true);

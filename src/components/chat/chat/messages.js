@@ -28,7 +28,7 @@ const Messages = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      lastMessageRef.current?.scrollIntoView({ bahavior: 'smooth' })
+      lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, 100);
   }, [messages])
 
