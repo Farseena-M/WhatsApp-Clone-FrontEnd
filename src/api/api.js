@@ -100,7 +100,7 @@ export const useGetMessages = () => {
   useEffect(() => {
     const getMessages = async () => {
       if (!selectedConversation || !selectedConversation._id) {
-        return; // Exit early if no selectedConversation or _id
+        return; 
       }
 
       setLoading(true);
@@ -129,4 +129,11 @@ export const useGetMessages = () => {
 
   return { messages, loading };
 };
+
+
+
+
+
+
+
 

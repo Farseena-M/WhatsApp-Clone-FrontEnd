@@ -7,6 +7,7 @@ import SignIn from './components/signIn';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import ProfileEdit from './components/profileEdit';
+import Room from './components/chat/videoChat/room';
 
 export const userContext = createContext();
 
@@ -32,6 +33,7 @@ const App = () => {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/profile' element={<ProfileEdit />} />
         <Route path='/chat' element={<ChatDialog />} />
+        <Route path='/room/:id' element={<Room />} />
       </Routes>
       <ToastContainer theme='colored' />
     </userContext.Provider>

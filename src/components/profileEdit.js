@@ -65,7 +65,7 @@ const ProfileEdit = () => {
             localStorage.setItem('user', JSON.stringify(updatedUser));
             setLoading(false);
             Nvgt('/chat');
-            // window.location.reload();
+            window.location.reload();
         } catch (error) {
             console.error('Error updating profile:', error.response.data);
             setLoading(false);

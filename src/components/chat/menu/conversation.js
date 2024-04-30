@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import useConversation from '../../../api/zustand';
 
 const Component = styled(Box)(({ selected }) => ({
@@ -26,7 +26,8 @@ const Conversation = ({ conversation }) => {
     return (
         <Component selected={selected} onClick={() => setSelectedConversation(conversation)}>
             <Box>
-                {conversation.image && <Image src={conversation.image} alt={conversation.name} />}            </Box>
+                {conversation.image && <Image src={conversation.image} alt={conversation.name} />}
+            </Box>
             <Box>
                 <Box>
                     <Typography style={{ fontFamily: 'inherit', padding: '10px 10px' }}>

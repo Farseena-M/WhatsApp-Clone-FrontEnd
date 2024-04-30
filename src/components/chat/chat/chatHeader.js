@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Box, Typography, styled } from '@mui/material'
 import VideocamIcon from '@mui/icons-material/Videocam';
 import useConversation from '../../../api/zustand';
 import { useSocketContext } from '../../../AccountContext/socketContext'
+import { RoomContext } from '../../../AccountContext/roomContext';
 
 const Header = styled(Box)`
 height:55px;
@@ -34,13 +35,20 @@ margin-left:auto;
     margin-top:3px;
   }
 `;
+const VideoCam = styled(VideocamIcon)`
+cursor:pointer;
+`;
 
 
 const ChatHeader = () => {
   const { selectedConversation, setSelectedConversation } = useConversation()
   const { onlineUsers } = useSocketContext()
   const isOnline = onlineUsers.includes(selectedConversation._id)
+  const {ws} = useContext(RoomContext)
 
+  const createRoom = () =>{
+    ws.emit('create-room')
+  }
   useEffect(() => {
     //cleanup function (unmounts)
     return () => setSelectedConversation(null)
@@ -54,7 +62,7 @@ const ChatHeader = () => {
         <Status>{isOnline ? 'Online' : 'Offline'}</Status>
       </Box>
       <RightContainer>
-        <VideocamIcon />
+        <VideoCam onClick={createRoom}/>
       </RightContainer>
     </Header>
   )
