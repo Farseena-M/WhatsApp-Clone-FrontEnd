@@ -54,7 +54,7 @@ const ChatFooter = () => {
 
   const addEmoji = (e) => {
     const emg = e.unified.split('_')
-    // console.log(emg);
+    console.log(emg);
     const codeArray = []
     emg.forEach((el) => codeArray.push('0x' + el))
     let emoji = String.fromCodePoint(...codeArray)
