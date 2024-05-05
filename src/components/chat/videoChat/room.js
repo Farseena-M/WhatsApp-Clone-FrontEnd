@@ -12,7 +12,6 @@
 //     <div>room ${id}</div>
 //   )
 // }
-
 // export default Room
 
 import React, { useEffect, useRef, useState } from 'react';
