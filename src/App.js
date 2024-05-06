@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import ProfileEdit from './components/profileEdit';
 import Room from './components/chat/videoChat/room';
+import { Contacts } from '@mui/icons-material';
 
 export const userContext = createContext();
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route path='/profile' element={<ProfileEdit />} />
         <Route path='/chat' element={<ChatDialog />} />
         <Route path='/room/:id' element={<Room />} />
+        <Route path='/contacts' element={<Contacts />} />
       </Routes>
       <ToastContainer theme='colored' />
     </userContext.Provider>
