@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import ProfileEdit from './components/profileEdit';
 import Room from './components/chat/videoChat/room';
 import { Contacts } from '@mui/icons-material';
+import GroupChatModal from './components/chat/menu/groupChatModal';
 
 export const userContext = createContext();
 
@@ -35,7 +36,7 @@ const App = () => {
         <Route path='/profile' element={<ProfileEdit />} />
         <Route path='/chat' element={<ChatDialog />} />
         <Route path='/room/:id' element={<Room />} />
-        <Route path='/contacts' element={<Contacts />} />
+        <Route path='/groupchat' element={<GroupChatModal />} />
       </Routes>
       <ToastContainer theme='colored' />
     </userContext.Provider>
