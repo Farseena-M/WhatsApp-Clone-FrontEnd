@@ -29,7 +29,7 @@ try {
         }
     }
     const rsps = await axios.get(`http://localhost:4000/users/all?search=${search}`, config);
-    console.log(rsps.data.data);
+    // console.log(rsps.data.data);
     const data = rsps.data.data
     setLoading(false)
     setSearchResults(data)
