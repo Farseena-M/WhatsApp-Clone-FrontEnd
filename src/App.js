@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import ProfileEdit from './components/profileEdit';
 import Room from './components/chat/videoChat/room';
-import { Contacts } from '@mui/icons-material';
 import GroupChatModal from './components/chat/menu/groupChatModal';
 
 export const userContext = createContext();
