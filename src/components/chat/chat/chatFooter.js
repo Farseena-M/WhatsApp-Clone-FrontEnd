@@ -73,7 +73,7 @@ const ChatFooter = () => {
           maxFrequentRows={'0'}
         />}
       </div>
-      {/* <Clip /> */}
+      {/* <Clip  /> */}
       <Search>
         <InputField
           placeholder="Type a message"

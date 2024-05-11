@@ -6,7 +6,6 @@ import { userContext } from '../../../App';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../../AccountContext/accountContext';
-import GroupChatModal from './groupChatModal';
 
 const MenuOption = styled(MenuItem)`
   font-size: 14px;
@@ -15,7 +14,6 @@ const MenuOption = styled(MenuItem)`
 `;
 
 function HeaderMenu({ setOpenDrawer }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const Nvgt = useNavigate();
     const { open, setOpen } = useContext(userContext);
     const { setAuthUser } = useAuthContext();
@@ -36,14 +34,6 @@ function HeaderMenu({ setOpenDrawer }) {
         window.location.reload();
     };
 
-    const handleCreateGroup = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
     return (
         <>
             <MoreVertIcon onClick={handleClick} style={{ cursor: 'pointer' }} />
@@ -62,12 +52,10 @@ function HeaderMenu({ setOpenDrawer }) {
                     horizontal: 'right',
                 }}
             >
-                <MenuOption onClick={handleCreateGroup}>Create Group</MenuOption>
                 <MenuOption onClick={() => { handleClose(); setOpenDrawer(true); }}>Profile</MenuOption>
                 <MenuOption onClick={() => Nvgt(`/profile`)}>Settings</MenuOption>
                 <MenuOption onClick={logoutUser}>Logout</MenuOption>
             </Menu>
-            <GroupChatModal isOpen={isModalOpen} onClose={handleCloseModal} />
         </>
     );
 }

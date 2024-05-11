@@ -17,7 +17,7 @@ const Image = styled('img')({
   width: '40px',
   objectFit: 'cover',
   borderRadius: '50%',
-  cursor: 'pointer', // Add cursor pointer to indicate clickable
+  cursor: 'pointer', 
 });
 const Name = styled(Typography)`
   margin-left: 12px !important;
@@ -67,15 +67,15 @@ color: rgb(0, 0, 0, 0.6);
 `
 
 const ChatHeader = () => {
-  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { selectedConversation} = useConversation();
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(selectedConversation._id);
-  const { ws } = useContext(RoomContext);
+  // const { ws } = useContext(RoomContext);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const createRoom = () => {
+ /*  const createRoom = () => {
     ws.emit('create-room');
-  };
+  }; */
 
   const handleImageClick = () => {
     setModalOpen(true);
@@ -94,7 +94,7 @@ const ChatHeader = () => {
           <Status>{isOnline ? 'Online' : 'Offline'}</Status>
         </Box>
         <RightContainer>
-          <VideoCam onClick={createRoom} />
+          {/* <VideoCam onClick={createRoom} /> */}
         </RightContainer>
       </Header>
       <Modal open={modalOpen} onClose={handleCloseModal}>
