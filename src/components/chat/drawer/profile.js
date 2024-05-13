@@ -2,6 +2,7 @@ import { Box, Typography, styled } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useAuthContext } from '../../../AccountContext/accountContext'
 
+
 const ImageContainer = styled(Box)`
     display:flex;
     justify-content:center;
@@ -55,6 +56,7 @@ const ProfileEdit = () => {
     const about = updatedAuthUser && updatedAuthUser.about ? updatedAuthUser.about : (authUser ? authUser.about : '');
 
     return (
+   
         <>
             <ImageContainer >
                 <Image src={userImage} alt='dp' style={{ cursor: 'pointer' }} />
@@ -73,6 +75,7 @@ const ProfileEdit = () => {
                 <Typography>{about}</Typography>
             </BoxWrapper>
         </>
+       
     )
 }
 

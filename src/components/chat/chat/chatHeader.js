@@ -3,7 +3,11 @@ import { Box, Typography, styled, Modal } from '@mui/material';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import useConversation from '../../../api/zustand';
 import { useSocketContext } from '../../../AccountContext/socketContext';
+import CallIcon from '@mui/icons-material/Call';
 import { RoomContext } from '../../../AccountContext/roomContext';
+import { useAuthContext } from '../../../AccountContext/accountContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { GLOBALTYPES } from '../../../redux/action/globalType';
 
 const Header = styled(Box)`
   height: 55px;
@@ -36,7 +40,7 @@ const RightContainer = styled(Box)`
     margin-top: 3px;
   }
 `;
-const VideoCam = styled(VideocamIcon)`
+const Call = styled(CallIcon)`
   cursor: pointer;
 `;
 
@@ -67,12 +71,17 @@ color: rgb(0, 0, 0, 0.6);
 `
 
 const ChatHeader = () => {
+  const {peer} = useSelector(state => state)
+  const {socket}=useSocketContext()
   const { selectedConversation} = useConversation();
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(selectedConversation._id);
   // const { ws } = useContext(RoomContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const {authUser} =useAuthContext()
+  const dispatch = useDispatch()
 
+  
  /*  const createRoom = () => {
     ws.emit('create-room');
   }; */
@@ -85,6 +94,39 @@ const ChatHeader = () => {
     setModalOpen(false);
   };
 
+
+  // Call
+  const caller = ({video}) =>{
+    const {_id,name,image}=authUser
+    const msg= {
+      sender : selectedConversation._id,
+      recipient:_id,name,image,video
+      
+      
+    }
+    dispatch({type:GLOBALTYPES.CALL,payload:msg})    
+  }
+
+  const calleruser=({video})=>{
+    console.log(video ,'hiiii')
+    const {_id,name,image}=selectedConversation;
+    const msg ={
+      sender:authUser._id,
+      recipient:_id,name,image,video
+    }
+    if(peer?.open)msg.peerId=peer._id     
+    socket.emit('calleruser',msg)
+  } 
+
+
+  // audio call
+
+  const handleAudioCall = () =>{
+    caller({video:false})
+    calleruser({video:false})
+    
+  }
+
   return (
     <>
       <Header>
@@ -95,6 +137,7 @@ const ChatHeader = () => {
         </Box>
         <RightContainer>
           {/* <VideoCam onClick={createRoom} /> */}
+          <Call onClick={handleAudioCall}/>
         </RightContainer>
       </Header>
       <Modal open={modalOpen} onClose={handleCloseModal}>

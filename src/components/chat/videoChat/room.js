@@ -1,4 +1,4 @@
-/* import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
 const Room = ({ roomId }) => {
@@ -21,7 +21,6 @@ const Room = ({ roomId }) => {
 
                 const peerConnection = new RTCPeerConnection();
                 stream.getTracks().forEach((track) => peerConnection.addTrack(track, stream));
-
                 socket.current.on('offer', async (data) => {
                     await peerConnection.setRemoteDescription(data.offer);
                     const answer = await peerConnection.createAnswer();
@@ -70,4 +69,3 @@ const Room = ({ roomId }) => {
 };
 
 export default Room;
- */
