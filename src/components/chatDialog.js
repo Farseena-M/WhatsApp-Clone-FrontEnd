@@ -4,6 +4,8 @@ import Menu from './chat/menu/menu';
 import BlankChat from './chat/chat/chat';
 import ChatBox from './chat/chat/chatBox';
 import useConversation from '../api/zustand';
+import AudioChat from './chat/chat/audioChat/AudioChat';
+import { useSelector } from 'react-redux';
 
 const Components = styled(Box)`
   display: flex;
@@ -38,6 +40,7 @@ const dialogStyle = {
 };
 
 const ChatDialog = () => {
+  const {call} = useSelector(state => state)
   const { selectedConversation } = useConversation();
   const [loading, setLoading] = useState(true); // Step 1: Introduce Loading State
 
@@ -48,6 +51,7 @@ const ChatDialog = () => {
 
   return (
     <Component>
+       {call ? <AudioChat />:""}
       <Header>
         <Toolbar />
       </Header>

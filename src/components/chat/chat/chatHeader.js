@@ -21,7 +21,7 @@ const Image = styled('img')({
   width: '40px',
   objectFit: 'cover',
   borderRadius: '50%',
-  cursor: 'pointer', 
+  cursor: 'pointer',
 });
 const Name = styled(Typography)`
   margin-left: 12px !important;
@@ -71,20 +71,15 @@ color: rgb(0, 0, 0, 0.6);
 `
 
 const ChatHeader = () => {
-  const {peer} = useSelector(state => state)
-  const {socket}=useSocketContext()
-  const { selectedConversation} = useConversation();
+  const { peer } = useSelector(state => state)
+  const { socket } = useSocketContext()
+  const { selectedConversation } = useConversation();
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(selectedConversation._id);
-  // const { ws } = useContext(RoomContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const {authUser} =useAuthContext()
+  const { authUser } = useAuthContext()
   const dispatch = useDispatch()
 
-  
- /*  const createRoom = () => {
-    ws.emit('create-room');
-  }; */
 
   const handleImageClick = () => {
     setModalOpen(true);
@@ -95,37 +90,38 @@ const ChatHeader = () => {
   };
 
 
-  // Call
-  const caller = ({video}) =>{
-    const {_id,name,image}=authUser
-    const msg= {
-      sender : selectedConversation._id,
-      recipient:_id,name,image,video
-      
-      
+    // Call
+
+  const caller = ({ video }) => {
+    const { _id, name, image } = selectedConversation
+    const msg = {   
+      sender: authUser._id,
+      recipient: _id, name, image, video
+
+
     }
-    dispatch({type:GLOBALTYPES.CALL,payload:msg})    
+    dispatch({ type: GLOBALTYPES.CALL, payload: msg })
   }
 
-  const calleruser=({video})=>{
-    console.log(video ,'hiiii')
-    const {_id,name,image}=selectedConversation;
-    const msg ={
-      sender:authUser._id,
-      recipient:_id,name,image,video
+  const calleruser = ({ video }) => {
+    
+    const { _id, name, image } = authUser;
+    console.log(authUser,"hh");
+    const msg = {
+      sender: selectedConversation._id,
+      recipient: _id, name, image, video
     }
-    if(peer?.open)msg.peerId=peer._id     
-    socket.emit('calleruser',msg)
-  } 
+    if (peer?.open) msg.peerId = peer._id
+    socket.emit('calleruser', msg)
+  }
 
 
   // audio call
 
-  const handleAudioCall = () =>{
-    caller({video:false})
-    calleruser({video:false})
-    
-  }
+  const handleAudioCall = () => {
+    caller({ video: false })
+    calleruser({ video: false })
+ }
 
   return (
     <>
@@ -136,8 +132,7 @@ const ChatHeader = () => {
           <Status>{isOnline ? 'Online' : 'Offline'}</Status>
         </Box>
         <RightContainer>
-          {/* <VideoCam onClick={createRoom} /> */}
-          <Call onClick={handleAudioCall}/>
+          <Call onClick={handleAudioCall} />
         </RightContainer>
       </Header>
       <Modal open={modalOpen} onClose={handleCloseModal}>

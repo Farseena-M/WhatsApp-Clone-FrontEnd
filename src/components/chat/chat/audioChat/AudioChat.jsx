@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { GLOBALTYPES } from "../../../../redux/action/globalType";
 import { useSocketContext } from "../../../../AccountContext/socketContext";
-
+import useConversation from "../../../../api/zustand";
+import './AudioChat.css'
 
 const CallModal = () => {
-  const { call, peer } = useSelector((state) => state);
+  const { call, peer} = useSelector((state) => state);
   const dispatch = useDispatch();
-const {socket}=useSocketContext()
+  const {socket} = useSocketContext()
+  const {selectedConversation} = useConversation()
+
   const [hours,setHours] = useState(0)
   const [mins, setMins] = useState(0);
   const [second, setSecond] = useState(0);
@@ -74,21 +76,12 @@ const {socket}=useSocketContext()
     return navigator.mediaDevices.getUserMedia(config)
   }
 
-  // issue streaming
   const playStream = (tag, stream) => {
     let video = tag;
     video.srcObject = stream;
-    let playPromise = video.play();
-  
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-   
-      }).catch(error => {
-        console.error('Play was interrupted:', error);
-      
-      });
-    }
-  }
+    video.play()
+}
+
   
 
   // Answer Call
@@ -136,8 +129,9 @@ const {socket}=useSocketContext()
          display: (answer && call.video) ? 'none' : 'flex'
       }}>
         <div className="text-center" style={{ padding: "40px 0" }}>
-          <img src={call.image}  />
+          <img src={call.image} alt="dp" className="size"/>
           <h4>{call.name}</h4>
+          {/* <h6>{call.fullname}</h6> */}
 
           {answer ? (
             <div>
@@ -172,12 +166,13 @@ const {socket}=useSocketContext()
           <span className="material-icons text-danger" onClick={handleEndCall}>
             call_end
           </span>
-          {call.recipient === auth.user._id && !answer && (
+          {call.recipient === selectedConversation._id && !answer && (
             <>
               {call.video ? (
                 <span
+                onClick={handleAnswer}
                   className="material-icons text-success"
-                  onClick={handleAnswer}
+                 
                 >
                   videocam
                 </span>
@@ -185,6 +180,7 @@ const {socket}=useSocketContext()
                 <span
                   className="material-icons text-success"
                   onClick={handleAnswer}
+                  
                 >
                   call
                 </span>

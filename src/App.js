@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginDialog from './components/loginDialog';
 import ChatDialog from './components/chatDialog';
 import SignUp from './components/signUp';
@@ -9,11 +10,12 @@ import { ToastContainer } from 'react-toastify';
 import ProfileEdit from './components/profileEdit';
 import Peer from 'peerjs';
 import { GLOBALTYPES } from './redux/action/globalType';
-import {useDispatch} from 'react-redux'
 
 export const userContext = createContext();
 
 const App = () => {
+
+
   const [user, setUser] = useState([]);
   const [login, setLogin] = useState(false);
   const [error, setError] = useState(false);
@@ -22,35 +24,39 @@ const App = () => {
   const [conversation, setConversation] = useState({});
   const [messages, setMessages] = useState([]);
 
-   const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    const newPeer = new Peer(undefined,{
-       host: '/', port:'3001'
-    })
-    console.log(newPeer);
-    dispatch({type:GLOBALTYPES.PEER, payload: newPeer})
-  },[dispatch])
-
-  
-
+  useEffect(() => {
+    const newPeer = new Peer(undefined, {
+      host: '/',
+      port: '3001'
+    });
+    newPeer.on('open', id => {
+      console.log('PeerJS connected with ID:', id);
+      dispatch({ type: GLOBALTYPES.PEER, payload: newPeer });
+    });
+    newPeer.on('error', err => {
+      console.error('PeerJS connection error:', err);
+    });
+  }, [dispatch]);
   return (
     <userContext.Provider value={{
       user, setUser, login, setLogin, error, setError, open, setOpen,
       search, setSearch, conversation, setConversation,
       messages, setMessages
     }}>
-      <Routes>
-        <Route path='/' element={<LoginDialog />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/signin' element={<SignIn />} />
-        <Route path='/profile' element={<ProfileEdit />} />
-        <Route path='/chat' element={<ChatDialog />} />
-        {/* <Route path='/room/:id' element={<Room />} /> */}
-      </Routes>
+          <Routes>
+            <Route path='/' element={<LoginDialog />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/signin' element={<SignIn />} />
+            <Route path='/profile' element={<ProfileEdit />} />
+            <Route path='/chat' element={<ChatDialog />} />
+          </Routes>
+          
+
       <ToastContainer theme='colored' />
     </userContext.Provider>
   );
-}
+};
 
 export default App;

@@ -44,10 +44,18 @@ const SignUp = () => {
 
 
     // Validate email
+
     function validateEmail(email) {
       const re = /\S+@\S+\.\S+/;
       return re.test(email);
     }
+
+    // Validate Phone
+
+    const validatePhoneNumber = (phone) => {
+      const re = /^[0-9]{10}$/;
+      return re.test(phone);
+    };
 
 
     if (
@@ -64,6 +72,12 @@ const SignUp = () => {
     if (!validateEmail(newRefEmail)) {
       setError(true);
       toast.warning(`Please enter a valid email address.`);
+      return;
+    }
+
+    if (!validatePhoneNumber(newPhone)) {
+      setError(true);
+      toast.warning('Please enter a valid 10-digit phone number.');
       return;
     }
 
