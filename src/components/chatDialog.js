@@ -42,11 +42,11 @@ const dialogStyle = {
 const ChatDialog = () => {
   const {call} = useSelector(state => state)
   const { selectedConversation } = useConversation();
-  const [loading, setLoading] = useState(true); // Step 1: Introduce Loading State
+  const [loading, setLoading] = useState(true); 
 
-  // Simulating loading effect
+ // Simulating loading effect
   setTimeout(() => {
-    setLoading(false); // Step 2: Set Loading State to false when rendering is complete
+    setLoading(false); 
   }, 1000);
 
   return (

@@ -4,7 +4,6 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import useConversation from '../../../api/zustand';
 import { useSocketContext } from '../../../AccountContext/socketContext';
 import CallIcon from '@mui/icons-material/Call';
-import { RoomContext } from '../../../AccountContext/roomContext';
 import { useAuthContext } from '../../../AccountContext/accountContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { GLOBALTYPES } from '../../../redux/action/globalType';
