@@ -52,7 +52,7 @@ const ProfileEdit = () => {
     // console.log('userImage:', userImage);
 
     // Check if updatedAuthUser and authUser are not null before accessing their properties
-    const username = updatedAuthUser && updatedAuthUser.username ? updatedAuthUser.username : (authUser ? authUser.username : '');
+    const userName = updatedAuthUser && updatedAuthUser.name ? updatedAuthUser.name : (authUser ? authUser.name : '');
     const about = updatedAuthUser && updatedAuthUser.about ? updatedAuthUser.about : (authUser ? authUser.about : '');
 
     return (
@@ -63,7 +63,7 @@ const ProfileEdit = () => {
             </ImageContainer>
             <BoxWrapper>
                 <Typography>Your name</Typography>
-                <Typography>{username}</Typography>
+                <Typography>{userName}</Typography>
             </BoxWrapper>
             <DescriptionContainer>
                 <Typography>

@@ -103,9 +103,8 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-
       });
-      const data = res.data
+      // const data = res.data
       // console.log(data);
       // localStorage.setItem('chat-user', JSON.stringify(data))
       // setAuthUser(data)
