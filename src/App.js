@@ -29,7 +29,7 @@ const App = () => {
   useEffect(() => {
     const newPeer = new Peer(undefined, {
       host: '/',
-      port: '3002'
+      port: '3001'
     });
     newPeer.on('open', id => {
       console.log('PeerJS connected with ID:', id);

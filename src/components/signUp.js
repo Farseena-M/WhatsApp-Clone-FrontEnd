@@ -93,11 +93,11 @@ const SignUp = () => {
 
     try {
       const formData = new FormData();
-      formData.append('image', image);
       formData.append('name', newRefName);
       formData.append('email', newRefEmail);
       formData.append('password', newRefPassword);
       formData.append('phone', newPhone);
+      formData.append('image', image);
 
       const res = await axios.post('https://zephyrchat.site/users/auth/signup', formData, {
         headers: {
