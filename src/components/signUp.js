@@ -99,7 +99,7 @@ const SignUp = () => {
       formData.append('password', newRefPassword);
       formData.append('phone', newPhone);
 
-      const res = await axios.post('http://localhost:3001/users/auth/signup', formData, {
+      const res = await axios.post('https://zephyrchat.site/users/auth/signup', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
