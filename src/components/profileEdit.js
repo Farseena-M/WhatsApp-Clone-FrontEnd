@@ -56,7 +56,7 @@ const ProfileEdit = () => {
             formData.append('image', newImage);
             formData.append('about', about);
 
-            const response = await axios.patch(`https://zephyrchat.site/users/updateProfile/${authUser._id}`, formData, {
+            const response = await axios.patch(`https://api.zaptalk.site/users/updateProfile/${authUser._id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('userToken')}` 
                 }

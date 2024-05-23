@@ -18,7 +18,7 @@ export const useGetConversation = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          "https://zephyrchat.site/users/all",
+          "https://api.zaptalk.site/users/all",
           {
             headers: {
               Authorization: authorization,
@@ -60,7 +60,7 @@ export const useSendMessages = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://zephyrchat.site/users/messages/send/${selectedConversation._id}`,
+        `https://api.zaptalk.site/users/messages/send/${selectedConversation._id}`,
         {
           method: "post",
           headers: {
@@ -105,7 +105,7 @@ export const useGetMessages = () => {
 
       setLoading(true);
       try {
-        const res = await fetch(`https://zephyrchat.site/users/messages/${selectedConversation._id}`, {
+        const res = await fetch(`https://api.zaptalk.site/users/messages/${selectedConversation._id}`, {
           headers: {
             Authorization: authorization,
           },

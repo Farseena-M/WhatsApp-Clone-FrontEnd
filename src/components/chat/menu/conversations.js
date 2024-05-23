@@ -44,7 +44,7 @@ const Conversations = () => {
   const handleDeleteContact = async () => {
     try {
       if (selectedConversation && selectedConversation._id) {
-        await axios.delete(`https://zephyrchat.site/users/${selectedConversation._id}`, {
+        await axios.delete(`https://api.zaptalk.site/users/${selectedConversation._id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('userToken')}` 
           }

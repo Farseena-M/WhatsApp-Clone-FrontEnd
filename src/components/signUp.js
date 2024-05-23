@@ -99,7 +99,7 @@ const SignUp = () => {
       formData.append('phone', newPhone);
       formData.append('image', image);
 
-      const res = await axios.post('https://zephyrchat.site/users/auth/signup', formData, {
+      const res = await axios.post('https://api.zaptalk.site/users/auth/signup', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
