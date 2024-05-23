@@ -52,7 +52,7 @@ const ProfileEdit = () => {
 
         try {
             const formData = new FormData();
-            formData.append('name', newUsername);
+            formData.append('username', newUsername);
             formData.append('image', newImage);
             formData.append('about', about);
 

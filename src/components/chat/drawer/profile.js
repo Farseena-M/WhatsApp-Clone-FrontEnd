@@ -52,7 +52,7 @@ const ProfileEdit = () => {
     // console.log('userImage:', userImage);
 
     // Check if updatedAuthUser and authUser are not null before accessing their properties
-    const userName = updatedAuthUser && updatedAuthUser.name ? updatedAuthUser.name : (authUser ? authUser.name : '');
+    const userName = updatedAuthUser && updatedAuthUser.username ? updatedAuthUser.username : (authUser ? authUser.username : '');
     const about = updatedAuthUser && updatedAuthUser.about ? updatedAuthUser.about : (authUser ? authUser.about : '');
 
     return (
