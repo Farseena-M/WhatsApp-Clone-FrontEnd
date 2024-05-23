@@ -46,7 +46,7 @@ const App = () => {
       messages, setMessages
     }}>
           <Routes>
-            <Route path='/' element={<LoginDialog />} />
+            {/* <Route path='/' element={<LoginDialog />} /> */}
             <Route path='/signup' element={<SignUp />} />
             <Route path='/signin' element={<SignIn />} />
             <Route path='/profile' element={<ProfileEdit />} />
