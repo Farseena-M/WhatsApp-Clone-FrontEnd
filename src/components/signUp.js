@@ -109,7 +109,7 @@ const SignUp = () => {
       // localStorage.setItem('chat-user', JSON.stringify(data))
       // setAuthUser(data)
       toast.success(`Successfully Registered`);
-      Nvgt('/signin');
+      Nvgt('/');
     } catch (err) {
       toast.error(err.message || 'An error occurred while registering.');
     }
