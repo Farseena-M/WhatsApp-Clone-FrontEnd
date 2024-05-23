@@ -64,7 +64,7 @@ const ChatFooter = () => {
   return (
     <Container >
       <EmojiEmotionsOutlined onClick={() => setShowEmoji(!showEmoji)} />
-      <div style={{ position: 'absolute', top: '310px', right: '100' }}>
+      <div style={{ position: 'absolute', top: '240px', right: '100' }}>
         {showEmoji && <Picker data={data}
           theme={'light'}
           onEmojiSelect={addEmoji}
