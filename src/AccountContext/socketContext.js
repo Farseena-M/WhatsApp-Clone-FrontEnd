@@ -18,7 +18,7 @@ export const SocketContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (authUser) {
-            const socket = io('https://zephyrchat.site', {
+            const socket = io('https://api.zaptalk.site', {
                 query: {
                     userId: authUser._id
                 }
