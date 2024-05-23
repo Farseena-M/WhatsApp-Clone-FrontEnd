@@ -84,7 +84,7 @@ const SignIn = () => {
               ) : (
                 <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={hndlClick}>Login</button>
               )}
-              <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={() => Nvgt('/')}>SignUp</button>
+              <button type="submit" className="btn btn-primary mt-2" style={{ border: 'none' }} onClick={() => Nvgt('/signup')}>SignUp</button>
             </form>
           </div>
         </Toolbar>

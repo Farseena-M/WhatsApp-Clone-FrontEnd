@@ -47,8 +47,8 @@ const App = () => {
     }}>
           <Routes>
             {/* <Route path='/' element={<LoginDialog />} /> */}
-            <Route path='/' element={<SignUp />} />
-            <Route path='/signin' element={<SignIn />} />
+            <Route path='/' element={<SignIn />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route path='/profile' element={<ProfileEdit />} />
             <Route path='/chat' element={<ChatDialog />} />
           </Routes>
