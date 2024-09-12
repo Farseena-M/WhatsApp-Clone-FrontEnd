@@ -46,7 +46,7 @@ const SignIn = () => {
         password: newLreffPassword
       };
 
-      const rspns = await axios.post('https://api.zaptalk.site/users/auth/login', data);
+      const rspns = await axios.post('http://localhost:9000/users/auth/login', data);
       console.log(rspns);
       const userToken = rspns.data.token;
       localStorage.setItem('userToken', userToken);

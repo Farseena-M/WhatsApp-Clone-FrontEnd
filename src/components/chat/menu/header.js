@@ -29,17 +29,12 @@ const Image = styled('img')({
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const { updatedAuthUser, authUser } = useAuthContext();
+  const {  authUser } = useAuthContext();
 
   useEffect(() => {
     console.log('authUser:', authUser);
-    console.log('updatedAuthUser:', updatedAuthUser);
-  }, [authUser, updatedAuthUser]);
+  }, [authUser]);
 
-  // Check if updatedAuthUser exists and has the image property
-  const userImage = updatedAuthUser && updatedAuthUser.image ? updatedAuthUser.image : (authUser ? authUser.image : null);
-
-  // console.log('userImage:', userImage);
 
   const toggleDrawer = () => {
     setOpenDrawer(!openDrawer);
@@ -49,7 +44,7 @@ const Header = () => {
     <>
       <Component>
         <Image
-          src={userImage}
+          src={authUser.image}
           alt='dp'
           onClick={toggleDrawer}
         />

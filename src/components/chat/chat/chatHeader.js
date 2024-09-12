@@ -1,12 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, styled, Modal } from '@mui/material';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import useConversation from '../../../api/zustand';
 import { useSocketContext } from '../../../AccountContext/socketContext';
 import CallIcon from '@mui/icons-material/Call';
-import { useAuthContext } from '../../../AccountContext/accountContext';
-import { useDispatch, useSelector } from 'react-redux';
-import { GLOBALTYPES } from '../../../redux/action/globalType';
 
 const Header = styled(Box)`
   height: 55px;
@@ -39,7 +36,7 @@ const RightContainer = styled(Box)`
     margin-top: 3px;
   }
 `;
-const Call = styled(CallIcon)`
+const Call = styled(VideocamIcon)`
   cursor: pointer;
 `;
 
@@ -70,14 +67,10 @@ color: rgb(0, 0, 0, 0.6);
 `
 
 const ChatHeader = () => {
-  const { peer } = useSelector(state => state)
-  const { socket } = useSocketContext()
   const { selectedConversation } = useConversation();
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(selectedConversation._id);
   const [modalOpen, setModalOpen] = useState(false);
-  const { authUser } = useAuthContext()
-  const dispatch = useDispatch()
 
 
   const handleImageClick = () => {
@@ -89,38 +82,7 @@ const ChatHeader = () => {
   };
 
 
-    // Call
 
-  const caller = ({ video }) => {
-    const { _id, name, image } = selectedConversation
-    const msg = {   
-      sender: authUser._id,
-      recipient: _id, name, image, video
-
-
-    }
-    dispatch({ type: GLOBALTYPES.CALL, payload: msg })
-  }
-
-  const calleruser = ({ video }) => {
-    
-    const { _id, name, image } = authUser;
-    console.log(authUser,"hh");
-    const msg = {
-      sender: selectedConversation._id,
-      recipient: _id, name, image, video
-    }
-    if (peer?.open) msg.peerId = peer._id
-    socket.emit('calleruser', msg)
-  }
-
-
-  // audio call
-
-  const handleAudioCall = () => {
-    caller({ video: false })
-    calleruser({ video: false })
- }
 
   return (
     <>
@@ -131,7 +93,8 @@ const ChatHeader = () => {
           <Status>{isOnline ? 'Online' : 'Offline'}</Status>
         </Box>
         <RightContainer>
-          <Call onClick={handleAudioCall} />
+          {/* <CallIcon /> */}
+          <Call />
         </RightContainer>
       </Header>
       <Modal open={modalOpen} onClose={handleCloseModal}>

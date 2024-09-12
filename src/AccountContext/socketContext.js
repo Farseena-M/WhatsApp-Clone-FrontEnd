@@ -1,8 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useAuthContext } from './accountContext'
 import io from 'socket.io-client'
-import { GLOBALTYPES } from '../redux/action/globalType'
-// import { useDispatch } from 'react-redux'
 
 const SocketContext = createContext()
 
@@ -11,14 +9,13 @@ export const useSocketContext = () =>{
 }
 
 export const SocketContextProvider = ({ children }) => {
-    // const dispatch = useDispatch()
     const [socket, setSocket] = useState(null)
     const [onlineUsers, setOnlineUsers] = useState([])
     const { authUser } = useAuthContext()
 
     useEffect(() => {
         if (authUser) {
-            const socket = io('https://api.zaptalk.site', {
+            const socket = io('http://localhost:9000/', {
                 query: {
                     userId: authUser._id
                 }
@@ -40,15 +37,6 @@ export const SocketContextProvider = ({ children }) => {
         }
     }, [authUser])
 
-
-   // call user
-
-//    useEffect(()=>{
-//      socket.on('callUserToClient', data =>{
-//          dispatch({type:GLOBALTYPES.CALL, payload:data})
-//      })
-//         return () => socket.off('callUserToClient')
-//    },[socket, dispatch])
 
 
     return (

@@ -7,20 +7,14 @@ import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthContextProvider } from './AccountContext/accountContext';
 import { SocketContextProvider } from './AccountContext/socketContext';
-// import { RoomProvider } from './AccountContext/roomContext';
-import DataProvider from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <AuthContextProvider>
-      {/* <RoomProvider> */}
       <SocketContextProvider>
-        <DataProvider>
         <App />
-        </DataProvider>
       </SocketContextProvider>
-      {/* </RoomProvider> */}
     </AuthContextProvider>
   </BrowserRouter>
 );

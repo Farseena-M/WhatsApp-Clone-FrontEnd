@@ -4,8 +4,6 @@ import Menu from './chat/menu/menu';
 import BlankChat from './chat/chat/chat';
 import ChatBox from './chat/chat/chatBox';
 import useConversation from '../api/zustand';
-import AudioChat from './chat/chat/audioChat/AudioChat';
-import { useSelector } from 'react-redux';
 
 const Components = styled(Box)`
   display: flex;
@@ -40,7 +38,6 @@ const dialogStyle = {
 };
 
 const ChatDialog = () => {
-  const {call} = useSelector(state => state)
   const { selectedConversation } = useConversation();
   const [loading, setLoading] = useState(true); 
 
@@ -51,7 +48,6 @@ const ChatDialog = () => {
 
   return (
     <Component>
-       {call ? <AudioChat />:""}
       <Header>
         <Toolbar />
       </Header>
@@ -61,7 +57,6 @@ const ChatDialog = () => {
         hideBackdrop={true}
         maxWidth={'md'}
       >
-        {/* Step 3: Conditional Rendering based on Loading State */}
         {loading ? (
           <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <CircularProgress />
