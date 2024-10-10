@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, styled, Modal } from '@mui/material';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import useConversation from '../../../api/zustand';
 import { useSocketContext } from '../../../AccountContext/socketContext';
 import CallIcon from '@mui/icons-material/Call';
+import VideoCallComponent from './VideoCall';
 
 const Header = styled(Box)`
   height: 55px;
@@ -68,9 +69,12 @@ color: rgb(0, 0, 0, 0.6);
 
 const ChatHeader = () => {
   const { selectedConversation } = useConversation();
-  const { onlineUsers } = useSocketContext();
+  const { onlineUsers, socket } = useSocketContext();
   const isOnline = onlineUsers.includes(selectedConversation._id);
   const [modalOpen, setModalOpen] = useState(false);
+  const { setLocalStream } = useSocketContext();
+  const [isInCall, setIsInCall] = useState(false);
+
 
 
   const handleImageClick = () => {
@@ -79,6 +83,42 @@ const ChatHeader = () => {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+  };
+
+
+  const handleCallClick = () => {
+    if (socket) {
+      const callData = {
+        receiverId: selectedConversation._id,
+      };
+      socket.emit('sendOffer', callData);
+      console.log(`Calling ${selectedConversation.name}...`);
+      setIsInCall(true);
+    }
+  };
+
+  useEffect(() => {
+    const getUserMedia = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        setLocalStream(stream);
+      } catch (error) {
+        console.error("Error accessing media devices.", error);
+      }
+    };
+
+    getUserMedia();
+  }, []);
+
+
+  const handleAcceptCall = () => {
+    console.log('Call accepted');
+    setIsInCall(true);
+  };
+
+  const handleDeclineCall = () => {
+    console.log('Call declined');
+    setIsInCall(false);
   };
 
 
@@ -94,13 +134,18 @@ const ChatHeader = () => {
         </Box>
         <RightContainer>
           {/* <CallIcon /> */}
-          <Call />
+          <Call onClick={handleCallClick} />
         </RightContainer>
       </Header>
+      {isInCall && <VideoCallComponent
+        onDecline={handleDeclineCall}
+      />}
       <Modal open={modalOpen} onClose={handleCloseModal}>
         <ModalComponent>
-          <Typography variant='h6' style={{ textAlign: 'center', color: '#00bfa5', fontSize: '30px', fontFamily: 'serif' }}>{selectedConversation.name}</Typography>
-          <CenteredBox >
+          <Typography variant='h6' style={{ textAlign: 'center', color: '#00bfa5', fontSize: '30px', fontFamily: 'serif' }}>
+            {selectedConversation.name}
+          </Typography>
+          <CenteredBox>
             <Image src={selectedConversation.image} alt='dp' style={{ height: '150px', width: '150px' }} />
             <Type style={{ fontSize: '18px' }}>{selectedConversation.phone}</Type>
             <Type>{isOnline ? 'Online' : 'Offline'}</Type>

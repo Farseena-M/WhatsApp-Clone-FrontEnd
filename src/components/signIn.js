@@ -23,12 +23,11 @@ const SignIn = () => {
   const reffEmail = useRef();
   const reffPassword = useRef();
 
-  // Step 1: Introduce Loading State
   const [loading, setLoading] = useState(false);
 
   const hndlClick = async (e) => {
     e.preventDefault();
-    setLoading(true); // Step 2: Set Loading State to true
+    setLoading(true); 
 
     const newLreffEmail = reffEmail.current.value;
     const newLreffPassword = reffPassword.current.value;
@@ -36,8 +35,8 @@ const SignIn = () => {
     if (newLreffEmail.length === 0 || newLreffPassword.length === 0) {
       setError(true);
       toast.warning(`Please fill in the blank`);
-      setLoading(false); // Step 2: Set Loading State to false
-      return; // stop further execution
+      setLoading(false); 
+      return; 
     }
 
     try {
@@ -56,10 +55,10 @@ const SignIn = () => {
       toast.success("User login Successfully");
       Nvgt('/chat');
     } catch (err) {
-      console.error(err);
-      toast.error(err.message || 'An error occurred while logging in.');
+      // console.error(err);
+      toast.error('Incorrect Email or Password');
     } finally {
-      setLoading(false); // Step 2: Set Loading State to false
+      setLoading(false); 
     }
   };
   return (
@@ -78,7 +77,6 @@ const SignIn = () => {
                 <label htmlFor="exampleInputPassword1" className="form-label" style={{ color: 'black' }}>Password</label>
                 <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter your password..' ref={reffPassword} />
               </div>
-              {/* Step 3: Conditional Rendering based on Loading State */}
               {loading ? (
                 <button type="button" className="btn btn-primary mt-2" disabled>Loading...</button>
               ) : (
